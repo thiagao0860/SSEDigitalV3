@@ -1,0 +1,83 @@
+﻿<Window
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:SSEDigitalV3"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes" x:Class="SSEDigitalV3.MainWindow"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="469.2" Width="755.2" WindowStyle="None" Background="#FF050034" AllowsTransparency="True" Visibility="Visible" WindowStartupLocation="CenterScreen" Icon="pack://siteoforigin:,,,/solidsouzaicon.eps">
+    <Grid HorizontalAlignment="Stretch" Height="auto" Margin="0,0,0,0" VerticalAlignment="Stretch" Width="auto">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="117*"/>
+            <ColumnDefinition Width="257*"/>
+        </Grid.ColumnDefinitions>
+        <Image Margin="25" Source="Assets/Image/ICONE chefe SOUZA CRUZ.png" />
+        <Rectangle Grid.ColumnSpan="2" Fill="Gray" Height="5" Margin="50,0,50,0"  VerticalAlignment="Top" Grid.Row="1" RadiusY="2.5" RadiusX="2.5"/>
+        <StackPanel Grid.Column="2" Orientation="Vertical" Margin="20">
+            <Label x:Name="labelTitulo" Content="Ola, Thiago" 
+               Margin="10,10,0,20"
+               HorizontalAlignment="Left"
+               Height="auto" Width="auto"
+               FontSize="25" Foreground="White"
+               />
+            <Label x:Name="labelConectAss" Content="Conectado como: Thiago de Souza Alves" 
+               Margin="10,0,0,0" HorizontalAlignment="Left"              
+               Height="auto" Width="auto"
+                   Uid="LabelNomeCompleto"
+                   Foreground="White"
+               />
+            <Label x:Name="labelMatricula" Content="Matricula: 10039895" 
+               Margin="10,0,0,0" HorizontalAlignment="Left"              
+               Height="auto" Width="auto"
+                   Foreground="White"
+               />
+            <Label x:Name="labelRamal" Content="Ramal : 8888" 
+               Margin="10,0,0,0" HorizontalAlignment="Left"              
+               Height="auto" Width="auto"
+                   Foreground="White"
+                   />
+        </StackPanel>
+        <StackPanel Grid.Row="1" Margin="20" Grid.ColumnSpan="2" Orientation="Horizontal">
+            <materialDesign:Card Width="140" Margin="20" materialDesign:ShadowAssist.ShadowDepth="Depth3" 
+                                 materialDesign:UniformCornerRadius="10" Background="#FFD700"
+                                 PreviewMouseDown="Card1_PreviewMouseDown" Cursor="Hand">
+                <StackPanel Orientation="Vertical" Margin="20">
+                    <materialDesign:PackIcon Kind="PlusBox" Height="75" Width="auto" HorizontalAlignment="Center"/>
+                    <TextBlock Foreground="Black" TextWrapping="Wrap" TextAlignment="Center">Nova SSE</TextBlock>
+                </StackPanel>
+            </materialDesign:Card>
+            <materialDesign:Card Width="140" Margin="20" materialDesign:ShadowAssist.ShadowDepth="Depth3" 
+                                 materialDesign:UniformCornerRadius="10" Background="#FFD700"
+                                 PreviewMouseDown="Card2_PreviewMouseDown" Cursor="Hand">
+                <StackPanel Orientation="Vertical" Margin="20">
+                    <materialDesign:PackIcon Kind="FileDocument" Height="75" Width="auto" HorizontalAlignment="Center"/>
+                    <TextBlock Foreground="Black" TextWrapping="Wrap" TextAlignment="Center">Consultar Minhas SSEs</TextBlock>
+                </StackPanel>
+            </materialDesign:Card>
+            <materialDesign:Card Width="140" Margin="20" materialDesign:ShadowAssist.ShadowDepth="Depth3" 
+                                 materialDesign:UniformCornerRadius="10" Background="#FFD700"
+                                 PreviewMouseDown="Card3_PreviewMouseDown" Cursor="Hand">
+                <StackPanel Orientation="Vertical" Margin="20">
+                    <materialDesign:PackIcon Kind="AccountCog" Height="75" Width="auto" HorizontalAlignment="Center"/>
+                    <TextBlock Foreground="Black" TextWrapping="Wrap" TextAlignment="Center">Alterar Meus Dadas</TextBlock>
+                </StackPanel>
+            </materialDesign:Card>
+            <materialDesign:Card Width="140" Margin="20" materialDesign:ShadowAssist.ShadowDepth="Depth3" 
+                                 materialDesign:UniformCornerRadius="10" Background="#FFD700"
+                                 PreviewMouseDown="Card4_PreviewMouseDown" Cursor="Hand">
+                <StackPanel Orientation="Vertical" Margin="20">
+                    <materialDesign:PackIcon Kind="ExitToApp" Height="75" Width="auto" HorizontalAlignment="Center"/>
+                    <TextBlock Foreground="Black" TextWrapping="Wrap" TextAlignment="Center">Sair Deste Computador</TextBlock>
+                </StackPanel>
+            </materialDesign:Card>
+        </StackPanel>
+        <materialDesign:PackIcon Grid.ColumnSpan="2"  Kind="Close" Height="20" Width="auto" HorizontalAlignment="Right"
+                                 Margin="0,10,10,0" VerticalAlignment="Top" Foreground="White" 
+                                 PreviewMouseDown="PackIcon_PreviewMouseDown" Cursor="Hand"/>
+    </Grid>
+</Window>
