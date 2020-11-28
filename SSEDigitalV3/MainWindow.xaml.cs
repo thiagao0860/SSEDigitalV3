@@ -1,4 +1,5 @@
-﻿using SSEDigitalV3.DataCore;
+﻿using SSEDigitalV3.AccountFeatures;
+using SSEDigitalV3.DataCore;
 using SSEDigitalV3.NewSSEInterface;
 using SSEDigitalV3.UserDBConnector;
 using System;
@@ -25,16 +26,27 @@ namespace SSEDigitalV3
     {
         private User foundUser;
 
+
         public MainWindow(User foundUser)
         {
             this.foundUser = foundUser;
             InitializeComponent();
             initMainLabel();
         }
+        public MainWindow(ref Intent intent)
+        { 
+            if (intent.getString("user_id") != null)
+            {
+                SQLiteUserConnector db = new SQLiteUserConnector();
+                this.foundUser = db.GetUserByID(intent.getString("user_id"));
+            }
+            InitializeComponent();
+            initMainLabel();
+        }
 
         private void Card1_PreviewMouseDown(object sender, MouseButtonEventArgs e)
         {
-            (new SSEdigital()).Show(); 
+            (new SSEdigital(foundUser)).ShowDialog(); 
         }
 
         private void Card2_PreviewMouseDown(object sender, MouseButtonEventArgs e)
@@ -44,7 +56,7 @@ namespace SSEDigitalV3
 
         private void Card3_PreviewMouseDown(object sender, MouseButtonEventArgs e)
         {
-
+            (new NewUserForm(foundUser)).Show();
         }
 
         private void Card4_PreviewMouseDown(object sender, MouseButtonEventArgs e)

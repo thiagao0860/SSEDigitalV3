@@ -230,11 +230,21 @@ namespace SSEDigitalV3.MainDBConnector
         #endregion
         //
         #region Main Data Handle
-        public bool insertSSE(SSEDBWrapper toInsert)
+        public int insertSSE(SSEDBWrapper toInsert)
         {
             InitConnection();
+            int returned = 0;
             try
             {
+                SQLiteDataReader sqlite_datareader;
+                SQLiteCommand sqlite_cmd1;
+                sqlite_cmd1 = db_connection.CreateCommand();
+                sqlite_cmd1.CommandText = "SELECT MAX(id) FROM MAIN;";
+                sqlite_datareader = sqlite_cmd1.ExecuteReader();
+                while (sqlite_datareader.Read())
+                {
+                    returned = sqlite_datareader.GetInt32(0);
+                }
                 SQLiteCommand sqlite_cmd;
                 sqlite_cmd = db_connection.CreateCommand();
                 sqlite_cmd.CommandText = "INSERT INTO MAIN(provider_id," +
@@ -318,6 +328,110 @@ namespace SSEDigitalV3.MainDBConnector
                 putParameter(sqlite_cmd, "$valor_orc_retorno", toInsert.valor_do_orcamento_retorno);
 
                 sqlite_cmd.ExecuteNonQuery();
+                return returned+1;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.StackTrace);
+                Console.WriteLine(ex.Message);
+                return returned+1;
+            }
+            finally
+            {
+                FinishConnection();
+            }
+        }
+        public bool insertSSE(SSEDBWrapper toInsert, long id)
+        {
+            InitConnection();
+            try
+            {
+                SQLiteCommand sqlite_cmd;
+                sqlite_cmd = db_connection.CreateCommand();
+                sqlite_cmd.CommandText = "INSERT INTO MAIN(id" +
+                                                            "provider_id," +
+                                                            " sse_data," +
+                                                            " type_id," +
+                                                            " codigo," +
+                                                            " referencia," +
+                                                            " descricao," +
+                                                            " solicitante," +
+                                                            " ramal," +
+                                                            " celula," +
+                                                            " maquina," +
+                                                            " ordem," +
+                                                            " requisicao," +
+                                                            " nf," +
+                                                            " prazo_entrega," +
+                                                            " data_recebimento," +
+                                                            " valor_item," +
+                                                            " valor_orc," +
+                                                            " prioridade," +
+                                                            " peso," +
+                                                            " quantidade," +
+                                                            " iss," +
+                                                            " codigo_servico," +
+                                                            " codigo_produto," +
+                                                            " numero_orc," +
+                                                            " numero_po," +
+                                                            " valor_orc_retorno) " +
+                    "VALUES($id" +
+                          "$provider_id," +
+                          " $sse_data," +
+                          " $type_id," +
+                          " $codigo," +
+                          " $referencia," +
+                          " $descricao," +
+                          " $solicitante," +
+                          " $ramal," +
+                          " $celula," +
+                          " $maquina," +
+                          " $ordem," +
+                          " $requisicao," +
+                          " $nf," +
+                          " $prazo_entrega," +
+                          " $data_recebimento," +
+                          " $valor_item," +
+                          " $valor_orc," +
+                          " $prioridade," +
+                          " $peso," +
+                          " $quantidade," +
+                          " $iss," +
+                          " $codigo_servico," +
+                          " $codigo_produto," +
+                          " $numero_orc," +
+                          " $numero_po," +
+                          " $valor_orc_retorno);";
+
+                putParameter(sqlite_cmd, "$id", id);
+                putParameter(sqlite_cmd, "$provider_id", toInsert.ISSEBean.Fornecedor);
+                putParameter(sqlite_cmd, "$sse_data", toInsert.ISSEBean.Data);
+                putParameter(sqlite_cmd, "$type_id", toInsert.ISSEBean.Tipo);
+                putParameter(sqlite_cmd, "$codigo", toInsert.ISSEBean.Codigo);
+                putParameter(sqlite_cmd, "$referencia", toInsert.ISSEBean.Referencia);
+                putParameter(sqlite_cmd, "$descricao", toInsert.ISSEBean.Descricao);
+                putParameter(sqlite_cmd, "$solicitante", toInsert.ISSEBean.Requisitante.Matricula);
+                putParameter(sqlite_cmd, "$ramal", toInsert.ISSEBean.Requisitante.Ramal);
+                putParameter(sqlite_cmd, "$celula", toInsert.ISSEBean.Requisitante.CelulaString);
+                putParameter(sqlite_cmd, "$maquina", toInsert.ISSEBean.Equipamento);
+                putParameter(sqlite_cmd, "$ordem", toInsert.ISSEBean.Ordem);
+                putParameter(sqlite_cmd, "$requisicao", toInsert.ISSEBean.Requisicao);
+                putParameter(sqlite_cmd, "$nf", toInsert.ISSEBean.Nota);
+                putParameter(sqlite_cmd, "$prazo_entrega", toInsert.ISSEBean.Prazo);
+                putParameter(sqlite_cmd, "$data_recebimento", toInsert.data_recebimento);
+                putParameter(sqlite_cmd, "$valor_item", toInsert.ISSEBean.Valor);
+                putParameter(sqlite_cmd, "$valor_orc", toInsert.ISSEBean.ValorOrc);
+                putParameter(sqlite_cmd, "$prioridade", toInsert.ISSEBean.Prioridade);
+                putParameter(sqlite_cmd, "$peso", toInsert.ISSEBean.Peso);
+                putParameter(sqlite_cmd, "$quantidade", toInsert.ISSEBean.Quantidade);
+                putParameter(sqlite_cmd, "$iss", toInsert.iss);
+                putParameter(sqlite_cmd, "$codigo_servico", toInsert.codigo_do_servico);
+                putParameter(sqlite_cmd, "$codigo_produto", toInsert.codigo_do_produto);
+                putParameter(sqlite_cmd, "$numero_orc", toInsert.numero_do_orcamento);
+                putParameter(sqlite_cmd, "$numero_po", toInsert.numero_da_PO);
+                putParameter(sqlite_cmd, "$valor_orc_retorno", toInsert.valor_do_orcamento_retorno);
+
+                sqlite_cmd.ExecuteNonQuery();
                 return true;
             }
             catch (Exception ex)
@@ -330,7 +444,7 @@ namespace SSEDigitalV3.MainDBConnector
             {
                 FinishConnection();
             }
-        }  
+        }
         public List<SSEDBWrapper> findSSE(String findBy, object value)
         {
             InitConnection();
@@ -545,6 +659,33 @@ namespace SSEDigitalV3.MainDBConnector
             {
                 Console.WriteLine(ex.StackTrace);
                 return false;
+            }
+            finally
+            {
+                FinishConnection();
+            }
+        }
+        public long lastindexSSE()
+        {
+            InitConnection();
+            try
+            {
+                SQLiteDataReader sqlite_datareader;
+                SQLiteCommand sqlite_cmd;
+                sqlite_cmd = db_connection.CreateCommand();
+                sqlite_cmd.CommandText = "SELECT MAX(id) FROM MAIN;";
+                sqlite_datareader = sqlite_cmd.ExecuteReader();
+                int returned = 0;
+                while (sqlite_datareader.Read())
+                {
+                    returned = sqlite_datareader.GetInt32(0);
+                }
+                return returned;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.StackTrace);
+                return 0;
             }
             finally
             {

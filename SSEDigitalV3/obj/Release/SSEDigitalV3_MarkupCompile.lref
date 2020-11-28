@@ -1,8 +1,11 @@
 ﻿
-FC:\Users\Thiago\source\repos\SSEDigitalV3\SSEDigitalV3\App.xaml;;
+
 FC:\Users\Thiago\source\repos\SSEDigitalV3\SSEDigitalV3\AccountFeatures\LoginForm.xaml;;
 FC:\Users\Thiago\source\repos\SSEDigitalV3\SSEDigitalV3\AccountFeatures\NewUserForm.xaml;;
 FC:\Users\Thiago\source\repos\SSEDigitalV3\SSEDigitalV3\Info.xaml;;
 FC:\Users\Thiago\source\repos\SSEDigitalV3\SSEDigitalV3\MainWindow.xaml;;
 FC:\Users\Thiago\source\repos\SSEDigitalV3\SSEDigitalV3\NewSSEInterface\SSEdigital.xaml;;
+FC:\Users\Thiago\source\repos\SSEDigitalV3\SSEDigitalV3\NewSSEInterface\LoadingPage.xaml;;
+FC:\Users\Thiago\source\repos\SSEDigitalV3\SSEDigitalV3\NewSSEInterface\SSEInsertResponse.xaml;;
+FC:\Users\Thiago\source\repos\SSEDigitalV3\SSEDigitalV3\NewSSEInterface\SSEinserted.xaml;;
 

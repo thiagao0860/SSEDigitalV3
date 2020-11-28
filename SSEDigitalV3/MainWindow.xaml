@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:SSEDigitalV3"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes" x:Class="SSEDigitalV3.MainWindow"
         mc:Ignorable="d"
-        Title="MainWindow" Height="469.2" Width="755.2" WindowStyle="None" Background="#FF050034" AllowsTransparency="True" Visibility="Visible" WindowStartupLocation="CenterScreen" Icon="pack://siteoforigin:,,,/solidsouzaicon.eps">
+        Title="MainWindow" Height="469.2" Width="755.2" WindowStyle="None" Background="#FF050034" AllowsTransparency="True" Visibility="Visible" WindowStartupLocation="CenterScreen">
     <Grid HorizontalAlignment="Stretch" Height="auto" Margin="0,0,0,0" VerticalAlignment="Stretch" Width="auto">
         <Grid.RowDefinitions>
             <RowDefinition Height="*"/>

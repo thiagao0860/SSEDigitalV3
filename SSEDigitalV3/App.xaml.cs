@@ -36,13 +36,13 @@ namespace SSEDigitalV3
                 {
                     if (MainConstants.getInstance().loged_User != null)
                     {
-                        (new SSEdigital(MainConstants.getInstance().loged_User)).ShowDialog();
+                        (new MainWindow(MainConstants.getInstance().loged_User)).ShowDialog();
                         return;
                     }
                     else
                     {
                         intent.putValue("user_id", index.ToString());
-                        (new SSEdigital(ref intent)).ShowDialog();
+                        (new MainWindow(ref intent)).ShowDialog();
                         return;
                     }
                 }
@@ -63,7 +63,7 @@ namespace SSEDigitalV3
                             db.InsertNullMAC(MACTriger.getUniqueCode());
                             Console.WriteLine(MACTriger.getUniqueCode());
                         }
-                        (new NewSSEInterface.SSEdigital()).ShowDialog();
+                        (new SSEdigital()).ShowDialog();
                     }
                     else if (returned_value.Equals(Info.NEW_USER_CREATED_OPTION))
                     {
@@ -75,7 +75,7 @@ namespace SSEDigitalV3
                         {
                             index = db.GetUserIDbyMAC(MACTriger.getUniqueCode());
                             intent.putValue("user_id", index.ToString());
-                            (new SSEdigital(ref intent)).ShowDialog();
+                            (new MainWindow(ref intent)).ShowDialog();
                         }
                     }
                     else if (returned_value.Equals(Info.USER_IN_OPTION))
@@ -88,15 +88,14 @@ namespace SSEDigitalV3
                         {
                             index = db.GetUserIDbyMAC(MACTriger.getUniqueCode());
                             intent.putValue("user_id", index.ToString());
-                            (new SSEdigital(ref intent)).ShowDialog();
+                            (new MainWindow(ref intent)).ShowDialog();
                         }
                     }
+                   
                 }
+                Application.Current.Shutdown();
             }
-
-            System.Windows.Application.Current.Shutdown();
         }
-    
     }
 
 }

@@ -173,7 +173,8 @@ namespace SSEDigitalV3.NewSSEInterface
             {
                 SSEBean toInsert= this.makeSSE();
                 Miscelaneus.testInputSSE(toInsert, this);
-                this.connector.insertSSE(new SSEDBWrapper(toInsert));
+                SSEInsertResponse dialog = new SSEInsertResponse(new SSEDBWrapper(toInsert));
+                dialog.ShowDialog();
             }
             catch(InputError ex)
             {

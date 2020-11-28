@@ -6,14 +6,14 @@ using System.Threading.Tasks;
 
 namespace SSEDigitalV3.DataCore
 {
-    class SSEDBWrapper
+    public class SSEDBWrapper
     {
         public static readonly DateTime nullDateTime = DateTime.MinValue;
         public static readonly int null_id = -1;
         
         private SSEBean iSSEBean = null;
 
-        public int id = null_id;
+        public long id = null_id;
         public String iss=null;
         public String codigo_do_servico=null ;
         public String codigo_do_produto=null ;

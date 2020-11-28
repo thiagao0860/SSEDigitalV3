@@ -138,8 +138,17 @@
     </Compile>
     <Compile Include="MainConstants.cs" />
     <Compile Include="MainDBConnector\SSEMainDBConnector.cs" />
+    <Compile Include="NewSSEInterface\LoadingPage.xaml.cs">
+      <DependentUpon>LoadingPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="NewSSEInterface\SSEdigital.xaml.cs">
       <DependentUpon>SSEdigital.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="NewSSEInterface\SSEinserted.xaml.cs">
+      <DependentUpon>SSEinserted.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="NewSSEInterface\SSEInsertResponse.xaml.cs">
+      <DependentUpon>SSEInsertResponse.xaml</DependentUpon>
     </Compile>
     <Compile Include="UsersDBConnector\SQLiteUserConnector.cs" />
     <Page Include="AccountFeatures\LoginForm.xaml">
@@ -166,7 +175,19 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="NewSSEInterface\LoadingPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="NewSSEInterface\SSEdigital.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="NewSSEInterface\SSEinserted.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="NewSSEInterface\SSEInsertResponse.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -194,7 +215,6 @@
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
-    <None Include="solidsouzaicon.eps" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

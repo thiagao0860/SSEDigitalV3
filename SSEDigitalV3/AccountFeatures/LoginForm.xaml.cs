@@ -60,7 +60,7 @@ namespace SSEDigitalV3.AccountFeatures
                     this.user_logedin = true;
                     MainConstants.getInstance().loged_User = found;
 
-                    MessageBoxResult res = MessageBox.Show(null, "Usuario logado. Deseja cadastrar essa máquina " +
+                    MessageBoxResult res = MessageBox.Show( "Usuario logado. Deseja cadastrar essa máquina " +
                         "como sua para não precisar digitar seus dados novamente?", "Sucess", MessageBoxButton.YesNo);
 
                     if (res.Equals(MessageBoxResult.Yes))
@@ -75,7 +75,7 @@ namespace SSEDigitalV3.AccountFeatures
             }
             catch (Exception ex)
             {
-                MessageBox.Show(null, ex.Message, "Erro", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show(ex.Message, "Erro", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
         private bool validateUser(User user)
@@ -99,7 +99,7 @@ namespace SSEDigitalV3.AccountFeatures
             if (textBoxMatricula.Text.Equals("Matrícula") || String.IsNullOrWhiteSpace(textBoxMatricula.Text))
             {
                 this.textBoxMatricula.Background = Brushes.Red;
-                MessageBox.Show(null, "Campo Matrícula em Branco", "Recuperação de Senha", MessageBoxButton.OK, MessageBoxImage.Information);
+                MessageBox.Show("Campo Matrícula em Branco", "Recuperação de Senha", MessageBoxButton.OK, MessageBoxImage.Information);
                 return;
             }
             string usrMatricula = this.textBoxMatricula.Text;
@@ -108,7 +108,7 @@ namespace SSEDigitalV3.AccountFeatures
             if (usr == null)
             {
                 this.textBoxMatricula.Background = Brushes.Red;
-                MessageBox.Show(null, "Matricula não Encontrada no Banco de Dados."
+                MessageBox.Show("Matricula não Encontrada no Banco de Dados."
                     , "Recuperação de Senha", MessageBoxButton.OK, MessageBoxImage.Information);
                 return;
             }
@@ -129,7 +129,7 @@ namespace SSEDigitalV3.AccountFeatures
                 if (response.IsSuccessStatusCode)
                 {   //PUT
                     Console.WriteLine("Sent");
-                    MessageBox.Show(null, "Sua nova senha foi enviada para seu Email."
+                    MessageBox.Show("Sua nova senha foi enviada para seu Email."
                         , "Recuperação de Senha", MessageBoxButton.OK, MessageBoxImage.Information);
                 }
             }

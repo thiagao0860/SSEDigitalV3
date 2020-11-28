@@ -59,4 +59,9 @@ C:\Users\Thiago\source\repos\SSEDigitalV3\SSEDigitalV3\bin\Release\Newtonsoft.Js
 C:\Users\Thiago\source\repos\SSEDigitalV3\SSEDigitalV3\bin\Release\System.Net.Http.Formatting.xml
 C:\Users\Thiago\source\repos\SSEDigitalV3\SSEDigitalV3\obj\Release\AccountFeatures\LoginForm.baml
 C:\Users\Thiago\source\repos\SSEDigitalV3\SSEDigitalV3\obj\Release\AccountFeatures\NewUserForm.baml
-C:\Users\Thiago\source\repos\SSEDigitalV3\SSEDigitalV3\obj\Release\App.baml
+C:\Users\Thiago\source\repos\SSEDigitalV3\SSEDigitalV3\obj\Release\NewSSEInterface\LoadingPage.g.cs
+C:\Users\Thiago\source\repos\SSEDigitalV3\SSEDigitalV3\obj\Release\NewSSEInterface\SSEInsertResponse.g.cs
+C:\Users\Thiago\source\repos\SSEDigitalV3\SSEDigitalV3\obj\Release\NewSSEInterface\LoadingPage.baml
+C:\Users\Thiago\source\repos\SSEDigitalV3\SSEDigitalV3\obj\Release\NewSSEInterface\SSEInsertResponse.baml
+C:\Users\Thiago\source\repos\SSEDigitalV3\SSEDigitalV3\obj\Release\NewSSEInterface\SSEinserted.g.cs
+C:\Users\Thiago\source\repos\SSEDigitalV3\SSEDigitalV3\obj\Release\NewSSEInterface\SSEinserted.baml

@@ -49,6 +49,22 @@ namespace SSEDigitalV3.AccountFeatures
             this.textBoxConfirmarSenha.Password = usr.Setor;
             this.textBoxMatricula.IsEnabled = false;
         }
+        public NewUserForm(User user)
+        {
+            InitializeComponent();
+            SSEMainDBConnector con = new SSEMainDBConnector();
+            initCell(con.findAllCells());
+            isEditing = true;
+            this.usr = user;
+            this.textBoxMatricula.Text = usr.Matricula;
+            this.textBoxNomeCompleto.Text = usr.Nome;
+            this.textBoxEMail.Text = usr.Email;
+            this.textBoxRamal.Text = usr.Ramal;
+            this.textBoxCelula.Text = usr.CelulaString;
+            this.textBoxSenha.Password = usr.Setor;
+            this.textBoxConfirmarSenha.Password = usr.Setor;
+            this.textBoxMatricula.IsEnabled = false;
+        }
 
         private void initCell(List<CellDBWrapper> foundCells)
         {
@@ -92,7 +108,7 @@ namespace SSEDigitalV3.AccountFeatures
 
                         MainConstants.getInstance().loged_User = prepared_user;
 
-                        MessageBoxResult res = MessageBox.Show(null, "Usuario cadastrado. Deseja cadastrar essa máquina " +
+                        MessageBoxResult res = MessageBox.Show("Usuario cadastrado. Deseja cadastrar essa máquina " +
                             "como sua para não precisar digitar seus dados novamente?", "Sucess", MessageBoxButton.YesNo);
                         if (res == MessageBoxResult.Yes)
                         {
@@ -100,13 +116,13 @@ namespace SSEDigitalV3.AccountFeatures
                             db.InsertMAC(adressMAC);
                             Console.WriteLine(adressMAC.UniqueCode);
                         }
-                        MessageBox.Show(null, "Usuário inserido ao banco de dados.", "info", MessageBoxButton.OK, MessageBoxImage.Information);
+                        MessageBox.Show("Usuário inserido ao banco de dados.", "info", MessageBoxButton.OK, MessageBoxImage.Information);
                         this.Close();
                     }
                     else
                     {
                         db.UpdateUser(prepared_user);
-                        MessageBox.Show(null, "Dados Atualizados no Banco de Dados. " +
+                        MessageBox.Show("Dados Atualizados no Banco de Dados. " +
                             "Reinicie o Programa para Atualizar as Informações.", "info", MessageBoxButton.OK, MessageBoxImage.Information);
                         this.Close();
                     }
@@ -115,7 +131,7 @@ namespace SSEDigitalV3.AccountFeatures
             }
             catch (Exception ex)
             {
-                MessageBox.Show(null, ex.Message, "error", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show(ex.Message, "error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
 
         }
