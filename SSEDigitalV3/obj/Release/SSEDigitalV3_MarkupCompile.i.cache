@@ -10,11 +10,11 @@ none
 false
 TRACE
 C:\Users\Thiago\source\repos\SSEDigitalV3\SSEDigitalV3\App.xaml
-8-2050905414
+9-281801977
 
-29-244081497
+30-2083773793
 1361329591249
-AccountFeatures\LoginForm.xaml;AccountFeatures\NewUserForm.xaml;Info.xaml;MainWindow.xaml;NewSSEInterface\LoadingPage.xaml;NewSSEInterface\SSEdigital.xaml;NewSSEInterface\SSEinserted.xaml;NewSSEInterface\SSEInsertResponse.xaml;
+AccountFeatures\LoginForm.xaml;AccountFeatures\NewUserForm.xaml;ConsultSSE\mySSEs.xaml;Info.xaml;MainWindow.xaml;NewSSEInterface\LoadingPage.xaml;NewSSEInterface\SSEdigital.xaml;NewSSEInterface\SSEinserted.xaml;NewSSEInterface\SSEInsertResponse.xaml;
 
 True
 

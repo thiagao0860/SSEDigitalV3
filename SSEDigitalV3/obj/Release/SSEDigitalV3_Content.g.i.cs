@@ -8,6 +8,6 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("newsseinterface/loading.png")]
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("assets/image/icon-chefe-mini.png")]
 
 

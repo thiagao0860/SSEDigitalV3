@@ -1,0 +1,51 @@
+﻿<Window x:Class="SSEDigitalV3.ConsultSSE.mySSEs"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"        xmlns:local="clr-namespace:SSEDigitalV3.ConsultSSE"
+       
+        mc:Ignorable="d"
+        Title="Consultar Minhas SSE" Height="709.2" Width="1001.6" Background="#FF050034">
+    <Grid Margin="10">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="85"/>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="50"/>
+        </Grid.RowDefinitions>
+        <DataGrid x:Name="DataGridSSEs" Margin="10,10,10.2,12.2" Grid.Row="1" CanUserAddRows="False" IsReadOnly="True" AutoGenerateColumns="False">
+            <DataGrid.Columns>
+                <DataGridTextColumn Binding="{Binding Path=id}" Header="Id"/>
+                <DataGridTextColumn Binding="{Binding Path=description}" Header="Descrição"/>
+            </DataGrid.Columns>
+
+        </DataGrid>
+        <StackPanel Grid.Row="2" Orientation="Horizontal" FlowDirection="RightToLeft" Margin="0,0.8,0.2,0.2">
+            <Button Content="Voltar" Margin="10" Padding="20,5" VerticalAlignment="Center" Background="#FFFFD700" Click="Button_Click"/>
+        </StackPanel>
+        <Grid Margin="10,10,10.2,10">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="70"/>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="63"/>
+                <ColumnDefinition Width="63"/>
+                <ColumnDefinition Width="62"/>
+            </Grid.ColumnDefinitions>
+            <Image Grid.Column="0" Margin="5,5,7.6,5" Source="/SSEDigitalV3;component/Assets/Image/icon-chefe-mini.png"/>
+            <materialDesign:Card Margin="9.4,10,10.2,10" UniformCornerRadius="5" Grid.Column="4" Background="#FFFFD700" MouseLeftButtonDown="buttonExcelHandle">
+                <materialDesign:PackIcon Foreground="Black" Kind="MicrosoftExcel" VerticalAlignment="Center" HorizontalAlignment="Center" Width="30" Height="30"></materialDesign:PackIcon>
+            </materialDesign:Card>
+            <materialDesign:Card Margin="9.4,10,10.2,10" UniformCornerRadius="5" Grid.Column="3" Background="#FFFFD700" MouseLeftButtonDown="buttonPDFHandle">
+                <materialDesign:PackIcon Foreground="Black" Kind="FilePdfOutline" VerticalAlignment="Center" HorizontalAlignment="Center" Width="30" Height="30"></materialDesign:PackIcon>
+            </materialDesign:Card>
+            <materialDesign:Card Margin="9.4,10,10.2,10" UniformCornerRadius="5" Grid.Column="2" Background="#FFFFD700" MouseLeftButtonDown="buttonEmailHandle">
+                <materialDesign:PackIcon Foreground="Black" Kind="Email" VerticalAlignment="Center" HorizontalAlignment="Center" Width="30" Height="30"></materialDesign:PackIcon>
+            </materialDesign:Card>
+            <TextBlock Grid.Column="1" Padding="20,0" Margin="0" TextWrapping="Wrap" Text="Relatório de SSEs" VerticalAlignment="Center" FontSize="24" Foreground="White"/>
+        </Grid>
+
+    </Grid>
+</Window>

@@ -120,6 +120,9 @@
     <Compile Include="AccountFeatures\NewUserForm.xaml.cs">
       <DependentUpon>NewUserForm.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ConsultSSE\mySSEs.xaml.cs">
+      <DependentUpon>mySSEs.xaml</DependentUpon>
+    </Compile>
     <Compile Include="DataCore\SetorDBWrapper.cs" />
     <Compile Include="DataCore\Intent.cs" />
     <Compile Include="DataCore\Intentable.cs" />
@@ -156,6 +159,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="AccountFeatures\NewUserForm.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ConsultSSE\mySSEs.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -221,17 +228,8 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="ExcelIntegration\" />
-    <Folder Include="Resources\" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Assets\Image\background2.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Assets\Image\background.png" />
-    <Resource Include="Assets\Image\background3.png" />
-    <Resource Include="Assets\Image\background4.png" />
-    <Resource Include="Assets\Image\background5.png" />
-    <Resource Include="Assets\Image\background6.png" />
     <Resource Include="Assets\Image\baseline_call_black_48dp.png" />
     <Resource Include="Assets\Image\baseline_email_black_48dp.png" />
     <Resource Include="Assets\Image\baseline_exit_to_app_black_48dp.png" />
@@ -273,6 +271,12 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="NewSSEInterface\project-icon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Assets\Image\background.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Assets\Image\icon-chefe-mini.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\packages\Stub.System.Data.SQLite.Core.NetFramework.1.0.113.3\build\net46\Stub.System.Data.SQLite.Core.NetFramework.targets" Condition="Exists('..\packages\Stub.System.Data.SQLite.Core.NetFramework.1.0.113.3\build\net46\Stub.System.Data.SQLite.Core.NetFramework.targets')" />

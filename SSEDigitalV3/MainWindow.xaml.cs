@@ -1,4 +1,5 @@
 ﻿using SSEDigitalV3.AccountFeatures;
+using SSEDigitalV3.ConsultSSE;
 using SSEDigitalV3.DataCore;
 using SSEDigitalV3.NewSSEInterface;
 using SSEDigitalV3.UserDBConnector;
@@ -51,7 +52,7 @@ namespace SSEDigitalV3
 
         private void Card2_PreviewMouseDown(object sender, MouseButtonEventArgs e)
         {
-
+            (new mySSEs(foundUser)).Show();
         }
 
         private void Card3_PreviewMouseDown(object sender, MouseButtonEventArgs e)

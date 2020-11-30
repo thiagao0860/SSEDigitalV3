@@ -453,8 +453,7 @@ namespace SSEDigitalV3.MainDBConnector
                 SQLiteDataReader sqlite_datareader;
                 SQLiteCommand sqlite_cmd;
                 sqlite_cmd = db_connection.CreateCommand();
-                sqlite_cmd.CommandText = "SELECT * FROM MAIN WHERE $conditional = $nvalue";
-                putParameter(sqlite_cmd, "$conditional", findBy);
+                sqlite_cmd.CommandText = "SELECT * FROM MAIN WHERE "+findBy+" = $nvalue";
                 putParameter(sqlite_cmd, "$nvalue", value);
                 List<SSEDBWrapper> toReturnList = new List<SSEDBWrapper>();
                 sqlite_datareader = sqlite_cmd.ExecuteReader();
@@ -484,13 +483,13 @@ namespace SSEDigitalV3.MainDBConnector
                     sse.ValorOrc = sqlite_datareader.GetFloat(valor_orc_main_table_index);
 
                     SSEDBWrapper return_set = new SSEDBWrapper(sse);
-                    return_set.codigo_do_produto = sqlite_datareader.GetString(codigo_do_produto_main_table_index);
-                    return_set.codigo_do_servico = sqlite_datareader.GetString(codigo_do_servico_main_table_index);
-                    return_set.data_recebimento = sqlite_datareader.GetDateTime(data_rec_main_table_index);
-                    return_set.iss = sqlite_datareader.GetString(iss_main_table_index);
-                    return_set.numero_da_PO = sqlite_datareader.GetString(po_num_main_table_index);
-                    return_set.numero_do_orcamento = sqlite_datareader.GetString(orc_num_main_table_index);
-                    return_set.valor_do_orcamento_retorno = sqlite_datareader.GetFloat(valor_orc_retorno_num_main_table_index);
+                    return_set.codigo_do_produto = SafeGetString(sqlite_datareader, codigo_do_produto_main_table_index);
+                    return_set.codigo_do_servico = SafeGetString(sqlite_datareader, codigo_do_servico_main_table_index);
+                    return_set.data_recebimento = SafeGetDateTime(sqlite_datareader, data_rec_main_table_index);
+                    return_set.iss = SafeGetString(sqlite_datareader, iss_main_table_index);
+                    return_set.numero_da_PO = SafeGetString(sqlite_datareader, po_num_main_table_index);
+                    return_set.numero_do_orcamento = SafeGetString(sqlite_datareader, orc_num_main_table_index);
+                    return_set.valor_do_orcamento_retorno = SafeGetFloat(sqlite_datareader, valor_orc_retorno_num_main_table_index);
                     return_set.id = sqlite_datareader.GetInt32(id_main_table_index);
 
                     toReturnList.Add(return_set);
@@ -544,13 +543,13 @@ namespace SSEDigitalV3.MainDBConnector
                     sse.ValorOrc = sqlite_datareader.GetFloat(valor_orc_main_table_index);
 
                     SSEDBWrapper return_set = new SSEDBWrapper(sse);
-                    return_set.codigo_do_produto = sqlite_datareader.GetString(codigo_do_produto_main_table_index);
-                    return_set.codigo_do_servico = sqlite_datareader.GetString(codigo_do_servico_main_table_index);
-                    return_set.data_recebimento = sqlite_datareader.GetDateTime(data_rec_main_table_index);
-                    return_set.iss = sqlite_datareader.GetString(iss_main_table_index);
-                    return_set.numero_da_PO = sqlite_datareader.GetString(po_num_main_table_index);
-                    return_set.numero_do_orcamento = sqlite_datareader.GetString(orc_num_main_table_index);
-                    return_set.valor_do_orcamento_retorno = sqlite_datareader.GetFloat(valor_orc_retorno_num_main_table_index);
+                    return_set.codigo_do_produto = SafeGetString(sqlite_datareader,codigo_do_produto_main_table_index);
+                    return_set.codigo_do_servico = SafeGetString(sqlite_datareader,codigo_do_servico_main_table_index);
+                    return_set.data_recebimento = SafeGetDateTime(sqlite_datareader, data_rec_main_table_index);
+                    return_set.iss = SafeGetString(sqlite_datareader,iss_main_table_index);
+                    return_set.numero_da_PO = SafeGetString(sqlite_datareader,po_num_main_table_index);
+                    return_set.numero_do_orcamento = SafeGetString(sqlite_datareader,orc_num_main_table_index);
+                    return_set.valor_do_orcamento_retorno = SafeGetFloat(sqlite_datareader, valor_orc_retorno_num_main_table_index);
                     return_set.id = sqlite_datareader.GetInt32(id_main_table_index);
 
                     toReturnList.Add(return_set);
@@ -1257,6 +1256,25 @@ namespace SSEDigitalV3.MainDBConnector
             par.ParameterName = parameter;
             par.Value = value;
             sqlitecmd.Parameters.Add(par);
+        }
+
+        public static string SafeGetString(SQLiteDataReader reader, int colIndex)
+        {
+            if (!reader.IsDBNull(colIndex))
+                return reader.GetString(colIndex);
+            return string.Empty;
+        }
+        public static float SafeGetFloat(SQLiteDataReader reader, int colIndex)
+        {
+            if (!reader.IsDBNull(colIndex))
+                return reader.GetFloat(colIndex);
+            return -1;
+        }
+        public static DateTime SafeGetDateTime(SQLiteDataReader reader, int colIndex)
+        {
+            if (!reader.IsDBNull(colIndex))
+                return reader.GetDateTime(colIndex);
+            return new DateTime(0,0,0);
         }
     }
 }

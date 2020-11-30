@@ -65,3 +65,5 @@ C:\Users\Thiago\source\repos\SSEDigitalV3\SSEDigitalV3\obj\Release\NewSSEInterfa
 C:\Users\Thiago\source\repos\SSEDigitalV3\SSEDigitalV3\obj\Release\NewSSEInterface\SSEInsertResponse.baml
 C:\Users\Thiago\source\repos\SSEDigitalV3\SSEDigitalV3\obj\Release\NewSSEInterface\SSEinserted.g.cs
 C:\Users\Thiago\source\repos\SSEDigitalV3\SSEDigitalV3\obj\Release\NewSSEInterface\SSEinserted.baml
+C:\Users\Thiago\source\repos\SSEDigitalV3\SSEDigitalV3\obj\Release\ConsultSSE\mySSEs.g.cs
+C:\Users\Thiago\source\repos\SSEDigitalV3\SSEDigitalV3\obj\Release\ConsultSSE\mySSEs.baml
