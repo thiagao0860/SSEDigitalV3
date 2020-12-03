@@ -67,3 +67,8 @@ C:\Users\Thiago\source\repos\SSEDigitalV3\SSEDigitalV3\obj\Release\NewSSEInterfa
 C:\Users\Thiago\source\repos\SSEDigitalV3\SSEDigitalV3\obj\Release\NewSSEInterface\SSEinserted.baml
 C:\Users\Thiago\source\repos\SSEDigitalV3\SSEDigitalV3\obj\Release\ConsultSSE\mySSEs.g.cs
 C:\Users\Thiago\source\repos\SSEDigitalV3\SSEDigitalV3\obj\Release\ConsultSSE\mySSEs.baml
+C:\Users\Thiago\source\repos\SSEDigitalV3\SSEDigitalV3\bin\Release\SSEDigitalV3.exe.manifest
+C:\Users\Thiago\source\repos\SSEDigitalV3\SSEDigitalV3\bin\Release\SSEDigitalV3.application
+C:\Users\Thiago\source\repos\SSEDigitalV3\SSEDigitalV3\obj\Release\SSEDigitalV3.TrustInfo.xml
+C:\Users\Thiago\source\repos\SSEDigitalV3\SSEDigitalV3\obj\Release\SSEDigitalV3.exe.manifest
+C:\Users\Thiago\source\repos\SSEDigitalV3\SSEDigitalV3\obj\Release\SSEDigitalV3.application

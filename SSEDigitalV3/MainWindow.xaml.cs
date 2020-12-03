@@ -1,6 +1,7 @@
 ﻿using SSEDigitalV3.AccountFeatures;
 using SSEDigitalV3.ConsultSSE;
 using SSEDigitalV3.DataCore;
+using SSEDigitalV3.GlobalTools;
 using SSEDigitalV3.NewSSEInterface;
 using SSEDigitalV3.UserDBConnector;
 using System;
@@ -72,8 +73,8 @@ namespace SSEDigitalV3
 
         private void initMainLabel()
         {
-            String foundNome = foundUser.Nome; 
-            this.labelTitulo.Content = "Ola, " + foundNome.Substring(0, foundNome.IndexOf(" "));
+            String foundNome = foundUser.Nome;
+            this.labelTitulo.Content = "Ola, " + Miscelaneus.getFirstWord(foundNome);
             this.labelConectAss.Content = "Conectado Como: "+ foundUser.Nome;
             this.labelMatricula.Content = "Matricula: " + foundUser.Matricula;
             this.labelRamal.Content = "Ramal: " + foundUser.Ramal;

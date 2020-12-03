@@ -14,7 +14,7 @@ namespace SSEDigitalV3
     /// <summary>
     /// Interação lógica para App.xaml
     /// </summary>
-    public partial class App : Application
+    public partial class    App : Application
     {
         public static string KEY_MAIN_OPTION = "main_option";
         public static string KEY_USER_TAG = "user_tag";
@@ -22,7 +22,9 @@ namespace SSEDigitalV3
         private SQLiteUserConnector connector;
         public App()
         {
+            
             connector = new SQLiteUserConnector();
+            
             if (MainConstants.getInstance().version_enabled == 1)
             {
                 (new SSEdigital()).ShowDialog();
@@ -93,7 +95,6 @@ namespace SSEDigitalV3
                     }
                    
                 }
-                Application.Current.Shutdown();
             }
         }
     }
