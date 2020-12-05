@@ -16,10 +16,33 @@
             <RowDefinition Height="1*"/>
             <RowDefinition Height="50"/>
         </Grid.RowDefinitions>
-        <DataGrid x:Name="DataGridSSEs" Margin="10,10,10.2,12.2" Grid.Row="1" CanUserAddRows="False" IsReadOnly="True" AutoGenerateColumns="False">
+        <DataGrid x:Name="DataGridSSEs" Margin="10,10,10.2,12.2" Grid.Row="1" CanUserAddRows="False" IsReadOnly="True" AutoGenerateColumns="False" Foreground="Black" BorderBrush="Silver" AlternatingRowBackground="#FFCDCDCD" HorizontalGridLinesBrush="#FFC3C3C3" VerticalGridLinesBrush="#FFC3C3C3">
             <DataGrid.Columns>
+                <DataGridTemplateColumn IsReadOnly="True">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <materialDesign:PackIcon Kind="Edit"></materialDesign:PackIcon>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <DataGridTemplateColumn IsReadOnly="True">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <materialDesign:PackIcon Kind="Eye"></materialDesign:PackIcon>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
                 <DataGridTextColumn Binding="{Binding Path=id}" Header="Id"/>
+                <DataGridTextColumn Binding="{Binding Path=data}" Header="Data"/>
+                <DataGridTextColumn Binding="{Binding Path=tipo}" Header="Tipo"/>
+                <DataGridTextColumn Binding="{Binding Path=fornecedor}" Header="Fornecedor"/>
                 <DataGridTextColumn Binding="{Binding Path=description}" Header="Descrição"/>
+                <DataGridTextColumn Binding="{Binding Path=ordem}" Header="Ordem"/>
+                <DataGridTextColumn Binding="{Binding Path=codigo}" Header="Código"/>
+                <DataGridTextColumn Binding="{Binding Path=referencia}" Header="Referência"/>
+                <DataGridTextColumn Binding="{Binding Path=prazo}" Header="Prazo"/>
+                <DataGridTextColumn Binding="{Binding Path=prioridade}" Header="Prioridade"/>
+                <DataGridTextColumn Binding="{Binding Path=valor}" Header="Valor"/>
             </DataGrid.Columns>
 
         </DataGrid>

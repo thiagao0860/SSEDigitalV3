@@ -19,7 +19,9 @@ namespace SSEDigitalV3.GlobalTools
                 EncodingOptions encOptions = new EncodingOptions() { Width = width, Height = height, Margin = 0};
                 bw.Options = encOptions;
                 bw.Format = ZXing.BarcodeFormat.QR_CODE;
+           
                 Bitmap resultado = new Bitmap(bw.Write(text));
+
                 return resultado;
             }
             catch (Exception ex)

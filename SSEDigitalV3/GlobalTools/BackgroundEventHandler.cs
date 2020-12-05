@@ -13,15 +13,16 @@ using iText.Layout.Properties;
 using iText.IO.Font;
 using iText.Kernel.Events;
 using iText.IO.Image;
+using SSEDigitalV3.DataCore;
 
 namespace SSEDigitalV3.GlobalTools
 {
     class BackgroundEventHandler : IEventHandler
     {
         protected Image img;
-        private string id;
+        private SSEDBWrapper id;
 
-        public BackgroundEventHandler(Image img, string id)
+        public BackgroundEventHandler(Image img, SSEDBWrapper id)
         {
             this.img = img;
             this.id = id;
@@ -40,13 +41,14 @@ namespace SSEDigitalV3.GlobalTools
             PdfFont font = PdfFontFactory.CreateFont(FontConstants.TIMES_BOLD);
             new Canvas(canvas, pdfDoc, area)
                 .Add(img)
-                .Add(new Paragraph(" \nSolicitação de Serviços Externos\nSSE n°: " + id)
+                .Add(new Paragraph(" \nSolicitação de Serviços Externos\nSSE n°: " + id.id)
                     .SetFont(font)
                     .SetFontColor(iText.Kernel.Colors.ColorConstants.WHITE)
                     .SetFontSize(16)
                     .SetTextAlignment(TextAlignment.CENTER))
-                .Add(new Image(ImageDataFactory.Create(QRCodeTools.GerarQRCode(50, 50, id), System.Drawing.Color.Black))
-                    .SetFixedPosition(20, 10))
+                .Add(new Image(ImageDataFactory.Create(QRCodeTools.GerarQRCode(100,100, id.id +" "+ id.ToString()), System.Drawing.Color.DarkBlue))
+                    .SetFixedPosition(20, 10)
+                    .ScaleToFit(50,50))
                 .Add(new Paragraph("Documento Consultável Eletrônicamente.")
                     .SetFont(font)
                     .SetFontColor(iText.Kernel.Colors.ColorConstants.WHITE)

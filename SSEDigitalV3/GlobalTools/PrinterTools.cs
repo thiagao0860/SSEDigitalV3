@@ -49,7 +49,7 @@ namespace SSEDigitalV3.GlobalTools
             iText.Layout.Element.Image img = new iText.Layout.Element.Image(ImageDataFactory.Create(FILE_NAME))
                                                                      .ScaleToFit(PageSize.A4.GetWidth(), PageSize.A4.GetHeight())
                                                                      .SetFixedPosition(0, 0);
-            BackgroundEventHandler handler = new BackgroundEventHandler(img, curWrapper.id.ToString());
+            BackgroundEventHandler handler = new BackgroundEventHandler(img, curWrapper);
             pdf.AddEventHandler(PdfDocumentEvent.END_PAGE, handler);
             var document = new Document(pdf);
             // Create a PdfFont

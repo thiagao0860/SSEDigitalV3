@@ -26,7 +26,17 @@ namespace SSEDigitalV3.ConsultSSE
         public struct DataInserter
         {
             public int id { set; get; }
+            public string requisitante { set; get; }
+            public string data { set; get; }
+            public string tipo { set; get; }
+            public string fornecedor { set; get; }
             public string description { set; get; }
+            public string ordem { set; get; }
+            public string codigo { set; get; }
+            public string referencia { set; get; }
+            public string prazo { set; get; }
+            public string prioridade { set; get; }
+            public string valor { set; get; }
         }
         public mySSEs(User usr)
         {
@@ -48,7 +58,20 @@ namespace SSEDigitalV3.ConsultSSE
             List<SSEDBWrapper> my_sses = connector2.findSSE("solicitante",usr.Matricula);
             foreach (SSEDBWrapper iterator in my_sses)
             {
-                this.DataGridSSEs.Items.Add(new DataInserter {id=(int)iterator.id , description=iterator.ISSEBean.Descricao});
+                this.DataGridSSEs.Items.Add(new DataInserter {
+                    id=(int)iterator.id , 
+                    requisitante=iterator.ISSEBean.Requisitante.Matricula.ToString(), 
+                    data=iterator.ISSEBean.Data.ToString(), 
+                    tipo=iterator.ISSEBean.getSavebleTipo(), 
+                    fornecedor=iterator.ISSEBean.getSavebleFornecedor(),  
+                    description=iterator.ISSEBean.Descricao,
+                    ordem=iterator.ISSEBean.Ordem,
+                    codigo=iterator.ISSEBean.Codigo,
+                    referencia=iterator.ISSEBean.Referencia,
+                    prazo=iterator.ISSEBean.Prazo.ToString(),
+                    prioridade=iterator.ISSEBean.Prioridade.ToString(),
+                    valor=iterator.ISSEBean.Valor.ToString()
+                });
             }
         }
 
