@@ -32,8 +32,8 @@
             <TextBlock VerticalAlignment="Center" Text="Responsável pelo processo: Deborah Gomes - Deborah.Gomes@bat.com"/>
         </StackPanel>
         <StackPanel Grid.Row="3" Grid.ColumnSpan="2" Orientation="Horizontal" FlowDirection="RightToLeft">
-            <Button Content="Sair" Margin="10" Height="25" Padding="20,0" Click="Button_Click"></Button>
-            <Button Content="Imprimir" Margin="10" Height="25" Padding="20,0"></Button>
+            <Button Content="Sair" Margin="10" Height="25" Padding="20,0" Click="Button_Exit_Click"></Button>
+            <Button Content="Imprimir" Margin="10" Height="25" Padding="20,0" Click="Button_Print_Click"></Button>
             <Button Content="Solicitar Autorização" Margin="10" Height="25" Padding="20,0" IsEnabled="False"></Button>
         </StackPanel>
     </Grid>

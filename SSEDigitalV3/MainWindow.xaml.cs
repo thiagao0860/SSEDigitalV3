@@ -28,6 +28,10 @@ namespace SSEDigitalV3
     {
         private User foundUser;
 
+        public MainWindow()
+        {
+            InitializeComponent();
+        }
 
         public MainWindow(User foundUser)
         {

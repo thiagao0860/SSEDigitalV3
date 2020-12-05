@@ -24,12 +24,14 @@ namespace SSEDigitalV3.NewSSEInterface
     {
         LoadingPage lp;
         SSEDBWrapper sse;
-        public SSEInsertResponse(SSEDBWrapper sse)
+        Window sseWindow;
+        public SSEInsertResponse(SSEDBWrapper sse, Window sseWin)
         {
             InitializeComponent();
             this.lp = new LoadingPage();
             this.inserted_host.Navigate(lp);
             this.sse = sse;
+            sseWindow = sseWin;
 
         }
 
@@ -43,7 +45,7 @@ namespace SSEDigitalV3.NewSSEInterface
             if (status > 0)
             {
                 sse.id = status;
-                this.inserted_host.Navigate(new SSEinserted(sse));
+                this.inserted_host.Navigate(new SSEinserted(sse,this,sseWindow));
             }
         }
     }

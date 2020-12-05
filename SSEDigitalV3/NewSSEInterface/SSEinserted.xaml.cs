@@ -1,4 +1,5 @@
 ﻿using SSEDigitalV3.DataCore;
+using SSEDigitalV3.GlobalTools;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -22,17 +23,26 @@ namespace SSEDigitalV3.NewSSEInterface
     public partial class SSEinserted : Page
     {
         SSEDBWrapper sse;
-
-        public SSEinserted(SSEDBWrapper sse)
+        Window messageWindow;
+        Window sseWindow;
+        public SSEinserted(SSEDBWrapper sse,Window messageWin ,Window sseWin)
         {
             InitializeComponent();
             this.sse = sse;
             this.textBlockNome.Text = "SSE Nº: " + sse.id;
+            messageWindow = messageWin;
+            sseWindow = sseWin;
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private void Button_Exit_Click(object sender, RoutedEventArgs e)
         {
-            Application.Current.Shutdown();
+            messageWindow.Close();
+            sseWindow.Close();
+        }
+
+        private void Button_Print_Click(object sender, RoutedEventArgs e)
+        {
+            (new PrinterTools(sse)).printSSE();
         }
     }
 }
