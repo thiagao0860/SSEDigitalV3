@@ -36,42 +36,53 @@ namespace SSEDigitalV3.GlobalTools
         [Obsolete]
         public void printSSE()
         {
-            SaveFileDialog dialog = new SaveFileDialog();
-            dialog.Filter = "PDF Files|*.pdf";
-            dialog.DefaultExt = ".pdf";
-            dialog.ShowDialog();
-            if (dialog.FileName == null) { Application.Exit(); }
-            String local = dialog.FileName;
-            FileStream dest = new FileStream(local, FileMode.Create);
+            try
+            {
+                SaveFileDialog dialog = new SaveFileDialog();
+                dialog.Title = "Salvar SSE n°: " + curWrapper.id;
+                dialog.FileName = "SSE - "  + curWrapper.id;
+                dialog.Filter = "PDF Files|*.pdf";
+                dialog.DefaultExt = ".pdf";
+                dialog.ShowDialog();
+                if (dialog.FileName == null) { Application.Exit(); }
+                String local = dialog.FileName;
+                if (String.IsNullOrWhiteSpace(local)) { Application.Exit(); }
+                FileStream dest = new FileStream(local, FileMode.Create);
 
-            var writer = new PdfWriter(dest);
-            var pdf = new PdfDocument(writer);
-            iText.Layout.Element.Image img = new iText.Layout.Element.Image(ImageDataFactory.Create(FILE_NAME))
-                                                                     .ScaleToFit(PageSize.A4.GetWidth(), PageSize.A4.GetHeight())
-                                                                     .SetFixedPosition(0, 0);
-            BackgroundEventHandler handler = new BackgroundEventHandler(img, curWrapper);
-            pdf.AddEventHandler(PdfDocumentEvent.END_PAGE, handler);
-            var document = new Document(pdf);
-            // Create a PdfFont
-            document.SetTopMargin(120);
-            document.SetBottomMargin(100);
-            PdfFont font = PdfFontFactory.CreateFont(FontConstants.TIMES_BOLD);
-            // Add a Paragraph
+                var writer = new PdfWriter(dest);
+                var pdf = new PdfDocument(writer);
+                iText.Layout.Element.Image img = new iText.Layout.Element.Image(ImageDataFactory.Create(FILE_NAME))
+                                                                         .ScaleToFit(PageSize.A4.GetWidth(), PageSize.A4.GetHeight())
+                                                                         .SetFixedPosition(0, 0);
+                BackgroundEventHandler handler = new BackgroundEventHandler(img, curWrapper);
+                pdf.AddEventHandler(PdfDocumentEvent.END_PAGE, handler);
+                var document = new Document(pdf);
+                // Create a PdfFont
+                document.SetTopMargin(120);
+                document.SetBottomMargin(100);
+                PdfFont font = PdfFontFactory.CreateFont(FontConstants.TIMES_BOLD);
+                // Add a Paragraph
 
-            // Create a List
-            //The last argument defines which cell will be added: a header or the usual one
-            Table table = makeFirstTable(cur);
-            document.Add(table);
+                // Create a List
+                //The last argument defines which cell will be added: a header or the usual one
+                Table table = makeFirstTable(cur);
+                document.Add(table);
 
-            document.Add(new Paragraph("\n"));
-            document.Add(new Paragraph("- Descrição:"));
-            document.Add(new Paragraph("    " + cur.Descricao));
-            document.Add(new Paragraph("\n"));
+                document.Add(new Paragraph("\n"));
+                document.Add(new Paragraph("- Descrição:"));
+                document.Add(new Paragraph("    " + cur.Descricao));
+                document.Add(new Paragraph("\n"));
 
-            Table table2 = makeConstantTable();
+                Table table2 = makeConstantTable();
 
-            document.Add(table2);
-            document.Close();
+                document.Add(table2);
+                document.Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Não foi possível imprimir a SSE");
+                Console.WriteLine(ex.StackTrace);
+            }
         }
 
         private static Table makeFirstTable(SSEBean sse)

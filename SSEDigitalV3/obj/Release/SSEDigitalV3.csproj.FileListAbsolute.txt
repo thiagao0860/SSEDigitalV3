@@ -104,3 +104,4 @@ C:\Users\Thiago\source\repos\SSEDigitalV3\SSEDigitalV3\bin\Release\zxing.xml
 C:\Users\Thiago\source\repos\SSEDigitalV3\SSEDigitalV3\bin\Release\zxing.presentation.xml
 C:\Users\Thiago\source\repos\SSEDigitalV3\SSEDigitalV3\obj\Release\App.baml
 C:\Users\Thiago\source\repos\SSEDigitalV3\SSEDigitalV3\obj\Release\GeneratedInternalTypeHelper.g.cs
+C:\Users\Thiago\source\repos\SSEDigitalV3\SSEDigitalV3\obj\Release\SSEDigitalV3.csproj.ResolveComReference.cache

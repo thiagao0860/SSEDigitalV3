@@ -21,14 +21,14 @@
                 <DataGridTemplateColumn IsReadOnly="True">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
-                            <materialDesign:PackIcon Kind="Edit"></materialDesign:PackIcon>
+                            <materialDesign:PackIcon Kind="Edit" VerticalAlignment="Center" HorizontalAlignment="Center"></materialDesign:PackIcon>
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
                 <DataGridTemplateColumn IsReadOnly="True">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
-                            <materialDesign:PackIcon Kind="Eye"></materialDesign:PackIcon>
+                            <materialDesign:PackIcon Kind="Eye" VerticalAlignment="Center" HorizontalAlignment="Center"></materialDesign:PackIcon>
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
@@ -62,7 +62,7 @@
                 <materialDesign:PackIcon Foreground="Black" Kind="MicrosoftExcel" VerticalAlignment="Center" HorizontalAlignment="Center" Width="30" Height="30"></materialDesign:PackIcon>
             </materialDesign:Card>
             <materialDesign:Card Margin="9.4,10,10.2,10" UniformCornerRadius="5" Grid.Column="3" Background="#FFFFD700" MouseLeftButtonDown="buttonPDFHandle">
-                <materialDesign:PackIcon Foreground="Black" Kind="FilePdfOutline" VerticalAlignment="Center" HorizontalAlignment="Center" Width="30" Height="30"></materialDesign:PackIcon>
+                <materialDesign:PackIcon Foreground="Black" Kind="Printer" VerticalAlignment="Center" HorizontalAlignment="Center" Width="30" Height="30"></materialDesign:PackIcon>
             </materialDesign:Card>
             <materialDesign:Card Margin="9.4,10,10.2,10" UniformCornerRadius="5" Grid.Column="2" Background="#FFFFD700" MouseLeftButtonDown="buttonEmailHandle">
                 <materialDesign:PackIcon Foreground="Black" Kind="Email" VerticalAlignment="Center" HorizontalAlignment="Center" Width="30" Height="30"></materialDesign:PackIcon>

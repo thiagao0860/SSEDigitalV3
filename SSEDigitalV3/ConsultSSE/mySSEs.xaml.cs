@@ -1,4 +1,6 @@
 ﻿using SSEDigitalV3.DataCore;
+using SSEDigitalV3.ExcelIntegration;
+using SSEDigitalV3.GlobalTools;
 using SSEDigitalV3.MainDBConnector;
 using SSEDigitalV3.UserDBConnector;
 using System;
@@ -82,12 +84,32 @@ namespace SSEDigitalV3.ConsultSSE
 
         private void buttonExcelHandle(object sender, MouseButtonEventArgs e)
         {
-            MessageBox.Show("Under Construction");
+            SSEMainDBConnector connector3 = new SSEMainDBConnector();
+            List<SSEDBWrapper> my_sses = connector3.findSSE("solicitante", usr.Matricula);
+            ExcelConnector con = new ExcelConnector();
+            for(int i =0; i<my_sses.Count ; i++)
+            {
+                con.makeRow(my_sses.ElementAt(i), i+1);
+            }
+            con.closeConnection();
         }
 
         private void buttonPDFHandle(object sender, MouseButtonEventArgs e)
         {
-            MessageBox.Show("Under Construction");
+            IList<DataGridCellInfo> selection= this.DataGridSSEs.SelectedCells;
+            SSEMainDBConnector connector = new SSEMainDBConnector();
+            if (selection.Count>0)
+            {
+                for (int i=0;i<selection.Count;i=i+this.DataGridSSEs.Columns.Count)
+                {
+                    int sse_id = ((DataInserter)selection.ElementAt(i).Item).id;
+                    SSEDBWrapper sse = connector.findSSE("id", sse_id.ToString()).ElementAt(0);
+                    (new PrinterTools(sse)).printSSE();
+                }
+            }
+            else{
+                MessageBox.Show("Selecione as SSE's que deseja imprimir.","Info");
+            }
         }
 
         private void buttonEmailHandle(object sender, MouseButtonEventArgs e)

@@ -235,14 +235,14 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="SSEDigitalV3.exe" size="3341800">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="SSEDigitalV3.exe" size="3350504">
       <assemblyIdentity name="SSEDigitalV3" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>EThM3KbMU0i4PumvgKbpPNoLRoPMhX9qvxnaHhA3etM=</dsig:DigestValue>
+        <dsig:DigestValue>/Mp8VJQR8wFx+hqksztYartdglF6r5fyOprvIwJOZY4=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
