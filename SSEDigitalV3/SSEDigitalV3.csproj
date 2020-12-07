@@ -194,6 +194,9 @@
     <Compile Include="AccountFeatures\NewUserForm.xaml.cs">
       <DependentUpon>NewUserForm.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ConsultSSE\editSSE.xaml.cs">
+      <DependentUpon>editSSE.xaml</DependentUpon>
+    </Compile>
     <Compile Include="ConsultSSE\mySSEs.xaml.cs">
       <DependentUpon>mySSEs.xaml</DependentUpon>
     </Compile>
@@ -237,6 +240,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="AccountFeatures\NewUserForm.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ConsultSSE\editSSE.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

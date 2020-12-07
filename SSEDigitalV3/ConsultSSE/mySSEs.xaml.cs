@@ -24,7 +24,6 @@ namespace SSEDigitalV3.ConsultSSE
     /// </summary>
     public partial class mySSEs : Window
     {
-        private User usr;
         public struct DataInserter
         {
             public int id { set; get; }
@@ -40,6 +39,9 @@ namespace SSEDigitalV3.ConsultSSE
             public string prioridade { set; get; }
             public string valor { set; get; }
         }
+
+        private User usr;
+        
         public mySSEs(User usr)
         {
             InitializeComponent();
@@ -57,7 +59,15 @@ namespace SSEDigitalV3.ConsultSSE
         public void initializeTable()
         {
             SSEMainDBConnector connector2 = new SSEMainDBConnector();
-            List<SSEDBWrapper> my_sses = connector2.findSSE("solicitante",usr.Matricula);
+            List<SSEDBWrapper> my_sses;
+            if (usr.CelulaString.Equals("ALMOX"))
+            {
+                my_sses = connector2.findAllSSEs();
+            }
+            else
+            {
+                my_sses = connector2.findSSE("solicitante", usr.Matricula);
+            }
             foreach (SSEDBWrapper iterator in my_sses)
             {
                 this.DataGridSSEs.Items.Add(new DataInserter {
@@ -85,7 +95,15 @@ namespace SSEDigitalV3.ConsultSSE
         private void buttonExcelHandle(object sender, MouseButtonEventArgs e)
         {
             SSEMainDBConnector connector3 = new SSEMainDBConnector();
-            List<SSEDBWrapper> my_sses = connector3.findSSE("solicitante", usr.Matricula);
+            List<SSEDBWrapper> my_sses;
+            if (usr.CelulaString.Equals("ALMOX"))
+            {
+                my_sses = connector3.findAllSSEs();
+            }
+            else
+            {
+                my_sses = connector3.findSSE("solicitante", usr.Matricula);
+            }
             ExcelConnector con = new ExcelConnector();
             for(int i =0; i<my_sses.Count ; i++)
             {
@@ -115,6 +133,14 @@ namespace SSEDigitalV3.ConsultSSE
         private void buttonEmailHandle(object sender, MouseButtonEventArgs e)
         {
             MessageBox.Show("Under Construction");
+        }
+
+        private void editSSEClick(object sender, MouseButtonEventArgs e)
+        {
+            int id = ((DataInserter)this.DataGridSSEs.SelectedCells.ElementAt(0).Item).id;
+            SSEMainDBConnector connector = new SSEMainDBConnector();
+            SSEDBWrapper sse = connector.findSSE("id", id.ToString()).ElementAt(0);
+            (new editSSE(sse)).ShowDialog();
         }
     }
 }

@@ -39,6 +39,10 @@ namespace SSEDigitalV3.MainDBConnector
         public static readonly int orc_num_main_table_index = 24;
         public static readonly int po_num_main_table_index = 25;
         public static readonly int valor_orc_retorno_num_main_table_index = 26;
+        public static readonly int excluded_main_table_index = 27;
+        public static readonly int is_sincronized_main_table_index = 28;
+        public static readonly int foto_out_main_table_index = 29;
+        public static readonly int foto_in_main_table_index = 30;
         #endregion
         //
         
@@ -144,6 +148,10 @@ namespace SSEDigitalV3.MainDBConnector
                                     "numero_orc VARCHAR(255)," +
                                     "numero_po VARCHAR(255)," +
                                     "valor_orc_retorno VARCHAR(255)," +
+                                    "Excluded BOOLEAN," +
+                                    "IsSincronized BOOLEAN," +
+                                    "foto_out TEXT," +
+                                    "foto_in TEXT," +
                                     "FOREIGN KEY(provider_id) REFERENCES PROVIDERS(id)," +
                                     "FOREIGN KEY(type_id) REFERENCES TYPES(id))";
                 sqlite_cmd = db_connection.CreateCommand();
@@ -453,7 +461,7 @@ namespace SSEDigitalV3.MainDBConnector
                 SQLiteDataReader sqlite_datareader;
                 SQLiteCommand sqlite_cmd;
                 sqlite_cmd = db_connection.CreateCommand();
-                sqlite_cmd.CommandText = "SELECT * FROM MAIN WHERE "+findBy+" = $nvalue";
+                sqlite_cmd.CommandText = "SELECT * FROM MAIN WHERE "+findBy+" = $nvalue AND Excluded = FALSE";
                 putParameter(sqlite_cmd, "$nvalue", value);
                 List<SSEDBWrapper> toReturnList = new List<SSEDBWrapper>();
                 sqlite_datareader = sqlite_cmd.ExecuteReader();
@@ -514,7 +522,7 @@ namespace SSEDigitalV3.MainDBConnector
                 SQLiteDataReader sqlite_datareader;
                 SQLiteCommand sqlite_cmd;
                 sqlite_cmd = db_connection.CreateCommand();
-                sqlite_cmd.CommandText = "SELECT * FROM MAIN";
+                sqlite_cmd.CommandText = "SELECT * FROM MAIN WHERE Excluded = FALSE";
                 List<SSEDBWrapper> toReturnList = new List<SSEDBWrapper>();
                 sqlite_datareader = sqlite_cmd.ExecuteReader();
                 while (sqlite_datareader.Read())
@@ -566,16 +574,17 @@ namespace SSEDigitalV3.MainDBConnector
                 FinishConnection();
             }
         }
-        public bool deleteSSE(int id)
+        public bool deleteSSE(long id)
         {
             InitConnection();
             try
             {
                 SQLiteCommand sqlite_cmd;
                 sqlite_cmd = db_connection.CreateCommand();
-                sqlite_cmd.CommandText = "DELETE FROM MAIN " +
-                    "WHERE id = $_id;";
-                putParameter(sqlite_cmd, "$_id", id);
+                sqlite_cmd.CommandText = "UPDATE MAIN SET " +
+                    "Excluded = TRUE " +
+                    "WHERE id = $mid;";
+                putParameter(sqlite_cmd, "$mid", id);
                 sqlite_cmd.ExecuteNonQuery();
                 return true;
             }
@@ -664,6 +673,7 @@ namespace SSEDigitalV3.MainDBConnector
                 FinishConnection();
             }
         }
+
         public long lastindexSSE()
         {
             InitConnection();

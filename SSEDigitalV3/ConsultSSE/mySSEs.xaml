@@ -3,7 +3,8 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"        xmlns:local="clr-namespace:SSEDigitalV3.ConsultSSE"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"        
+        xmlns:local="clr-namespace:SSEDigitalV3.ConsultSSE"
        
         mc:Ignorable="d"
         Title="Consultar Minhas SSE" Height="709.2" Width="1001.6" Background="#FF050034">
@@ -21,14 +22,14 @@
                 <DataGridTemplateColumn IsReadOnly="True">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
-                            <materialDesign:PackIcon Kind="Edit" VerticalAlignment="Center" HorizontalAlignment="Center"></materialDesign:PackIcon>
+                            <materialDesign:PackIcon Kind="Edit" VerticalAlignment="Center" HorizontalAlignment="Center" MouseDoubleClick="editSSEClick"></materialDesign:PackIcon>
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
                 <DataGridTemplateColumn IsReadOnly="True">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
-                            <materialDesign:PackIcon Kind="Eye" VerticalAlignment="Center" HorizontalAlignment="Center"></materialDesign:PackIcon>
+                            <materialDesign:PackIcon Kind="Eye" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="Gray"></materialDesign:PackIcon>
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>

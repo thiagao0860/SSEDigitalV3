@@ -57,12 +57,12 @@ namespace SSEDigitalV3
 
         private void Card2_PreviewMouseDown(object sender, MouseButtonEventArgs e)
         {
-            (new mySSEs(foundUser)).Show();
+            (new mySSEs(foundUser)).ShowDialog();
         }
 
         private void Card3_PreviewMouseDown(object sender, MouseButtonEventArgs e)
         {
-            (new NewUserForm(foundUser)).Show();
+            (new NewUserForm(foundUser)).ShowDialog();
         }
 
         private void Card4_PreviewMouseDown(object sender, MouseButtonEventArgs e)
@@ -87,7 +87,11 @@ namespace SSEDigitalV3
         //My personalized close icon
         private void PackIcon_PreviewMouseDown(object sender, MouseButtonEventArgs e)
         {
-            this.Close();
+            var win = Application.Current.Windows;
+            foreach(Window iterator in win)
+            {
+                iterator.Close();
+            }
         }
     }
 }
