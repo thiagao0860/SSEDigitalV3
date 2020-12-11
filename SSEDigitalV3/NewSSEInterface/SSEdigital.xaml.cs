@@ -22,12 +22,27 @@ namespace SSEDigitalV3.NewSSEInterface
     /// <summary>
     /// Lógica interna para SSEdigital.xaml
     /// </summary>
-    public partial class SSEdigital : Window
+    public partial class SSEdigital : Window, SSEVisualInterface
     {
         private CultureInfo culture;
         private SSEMainDBConnector connector;
         private Intent intent= null;
         private User found_user = null;
+
+        #region interface implementation
+        ComboBox SSEVisualInterface.comboBoxProvider { get => this.comboBoxProvider; }
+        ComboBox SSEVisualInterface.comboBoxTipo { get => this.comboBoxTipo;}
+        ComboBox SSEVisualInterface.comboBoxCelula { get => this.comboBoxCelula;}
+        TextBox SSEVisualInterface.textBoxOrdem { get => this.textBoxOrdem;}
+        TextBox SSEVisualInterface.textBoxRamal { get => this.textBoxRamal;}
+        TextBox SSEVisualInterface.textBoxValor { get => this.textBoxValor;}
+        TextBox SSEVisualInterface.textBoxValorOrc { get => this.textBoxValorOrc;}
+        TextBox SSEVisualInterface.textBoxPeso { get => this.textBoxPeso; }
+        TextBox SSEVisualInterface.textBoxRequisitante { get => this.textBoxRequisitante;}
+        DatePicker SSEVisualInterface.datePickerPrazo { get => this.datePickerPrazo;}
+        Xceed.Wpf.Toolkit.IntegerUpDown SSEVisualInterface.numericUpDownQuantidade { get => this.numericUpDownQuantidade;}
+        #endregion
+
         public SSEdigital()
         {
             myConstructor();

@@ -298,7 +298,7 @@
                     <RowDefinition Height="1*"/>
                 </Grid.RowDefinitions>
                 <Label Grid.Row="0" Content="Data do Recebimento:" Foreground="Black" VerticalAlignment="Center" Margin="10,0,0,0"/>
-                <TextBox x:Name="TextBoxDataRecebimento" Grid.Row="1" VerticalAlignment="Center" Margin="10,0,10,0" IsEnabled="True" HorizontalContentAlignment="Center"/>
+                <DatePicker x:Name="DatePickerDataRecebimento" Grid.Row="1" VerticalAlignment="Center" Margin="10,0,10,0" IsEnabled="True"/>
             </Grid>
             <Grid Grid.Column="0" Grid.Row="1" >
                 <Grid.RowDefinitions>

@@ -27,7 +27,7 @@ namespace SSEDigitalV3.GlobalTools
             return textRange.Text;
         }
 
-        public static SSEBean testInputSSE(SSEBean input, SSEdigital controler)
+        public static SSEBean testInputSSE(SSEBean input, SSEVisualInterface controler)
         {
             if (input.Fornecedor < SSEBean.FornecedorOpts.MIN_INDEX_OPT)
             {

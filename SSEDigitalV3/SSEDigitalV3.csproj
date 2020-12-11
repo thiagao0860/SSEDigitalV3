@@ -209,6 +209,7 @@
     <Compile Include="DataCore\SSEBean.cs" />
     <Compile Include="DataCore\SSEDBWrapper.cs" />
     <Compile Include="DataCore\CellDBWrapper.cs" />
+    <Compile Include="DataCore\SSEVisualInterface.cs" />
     <Compile Include="DataCore\TypeDBWrapper.cs" />
     <Compile Include="DataCore\User.cs" />
     <Compile Include="ExcelIntegration\ExcelConnector.cs" />
