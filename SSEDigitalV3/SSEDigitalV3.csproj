@@ -218,6 +218,9 @@
     <Compile Include="GlobalTools\Miscelaneus.cs" />
     <Compile Include="GlobalTools\PrinterTools.cs" />
     <Compile Include="GlobalTools\QRCodeTools.cs" />
+    <Compile Include="GlobalTools\UserInserter.xaml.cs">
+      <DependentUpon>UserInserter.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Info.xaml.cs">
       <DependentUpon>Info.xaml</DependentUpon>
     </Compile>
@@ -252,6 +255,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="ConsultSSE\mySSEs.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="GlobalTools\UserInserter.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

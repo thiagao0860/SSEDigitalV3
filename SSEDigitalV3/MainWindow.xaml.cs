@@ -48,7 +48,22 @@ namespace SSEDigitalV3
 
         private void Card1_PreviewMouseDown(object sender, MouseButtonEventArgs e)
         {
-            (new SSEdigital(foundUser)).ShowDialog(); 
+            if (foundUser.CelulaString.Equals("ALMOX") || foundUser.Superuser==true)
+            {
+                MessageBoxResult result =MessageBox.Show("Você está criando esta SSE para outro usuário?", "Nominal", MessageBoxButton.YesNo);
+                if (result==MessageBoxResult.Yes)
+                {
+                    (new SSEdigital()).ShowDialog();
+                }
+                if (result == MessageBoxResult.No)
+                {
+                    (new SSEdigital(foundUser)).ShowDialog();
+                }
+            }
+            else
+            {
+                (new SSEdigital(foundUser)).ShowDialog();
+            }
         }
 
         private void Card2_PreviewMouseDown(object sender, MouseButtonEventArgs e)

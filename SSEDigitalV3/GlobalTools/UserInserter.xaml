@@ -1,0 +1,33 @@
+﻿<Window x:Class="SSEDigitalV3.GlobalTools.UserInserter"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:SSEDigitalV3.GlobalTools"
+        mc:Ignorable="d"
+        Title="UserInserter" Height="148.766" Width="361.445" WindowStyle="ToolWindow" ResizeMode="NoResize" Background="LightGray">
+    <Grid Margin="10">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="1*"/>
+        </Grid.RowDefinitions>
+        <Grid Grid.Row="0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="46*"/>
+                <ColumnDefinition Width="163*"/>
+            </Grid.ColumnDefinitions>
+            <Label Grid.Column="0" Content="Nome:" VerticalAlignment="Center" HorizontalAlignment="Center" />
+            <TextBox x:Name="textBoxName" Grid.Column="1" Margin="10" />
+        </Grid>
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+
+                <ColumnDefinition Width="3*"/>
+                <ColumnDefinition Width="1*"/>
+
+            </Grid.ColumnDefinitions>
+            <Button Content="Insert" Grid.Column="1" Margin="10" Click="Button_Click"/>
+        </Grid>
+
+    </Grid>
+</Window>

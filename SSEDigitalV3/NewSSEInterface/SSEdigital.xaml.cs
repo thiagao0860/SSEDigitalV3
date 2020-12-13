@@ -194,6 +194,10 @@ namespace SSEDigitalV3.NewSSEInterface
             try
             {
                 SSEBean toInsert= this.makeSSE();
+                if (found_user == null)
+                {
+                    toInsert.Requisitante.Nome = UserInserter.myShow();
+                }
                 Miscelaneus.testInputSSE(toInsert, this);
                 SSEInsertResponse dialog = new SSEInsertResponse(new SSEDBWrapper(toInsert),this,SSEInsertResponse.INSERT_SSE);
                 dialog.ShowDialog();
@@ -229,6 +233,7 @@ namespace SSEDigitalV3.NewSSEInterface
 
         private void onClose(object sender, EventArgs e)
         {
+            /*
             if (found_user == null)
             {
                 var win = Application.Current.Windows;
@@ -237,6 +242,7 @@ namespace SSEDigitalV3.NewSSEInterface
                     iterator.Close();
                 }
             }
+            */
         }
 
     }
