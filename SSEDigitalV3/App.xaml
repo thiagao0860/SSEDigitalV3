@@ -14,7 +14,4 @@
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Application.Resources>
-    <Application.MainWindow>
-        <local:MainWindow/>
-    </Application.MainWindow>
 </Application>

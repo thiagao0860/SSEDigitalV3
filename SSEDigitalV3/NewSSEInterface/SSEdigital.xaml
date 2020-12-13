@@ -7,7 +7,7 @@
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes" x:Class="SSEDigitalV3.NewSSEInterface.SSEdigital"
         xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
         mc:Ignorable="d"
-        Title="SSEdigital" Height="700" Width="1100" Icon="project-icon.png">
+        Title="SSEdigital" Height="700" Width="1100" Icon="project-icon.png" Closed="onClose">
     <Window.Background>
         <ImageBrush ImageSource="/SSEDigitalV3;component/Assets/Image/background.png"/>
     </Window.Background>

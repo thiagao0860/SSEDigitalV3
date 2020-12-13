@@ -102,8 +102,8 @@ C:\Users\Thiago\source\repos\SSEDigitalV3\SSEDigitalV3\bin\Release\zxing.dll
 C:\Users\Thiago\source\repos\SSEDigitalV3\SSEDigitalV3\bin\Release\zxing.presentation.dll
 C:\Users\Thiago\source\repos\SSEDigitalV3\SSEDigitalV3\bin\Release\zxing.xml
 C:\Users\Thiago\source\repos\SSEDigitalV3\SSEDigitalV3\bin\Release\zxing.presentation.xml
-C:\Users\Thiago\source\repos\SSEDigitalV3\SSEDigitalV3\obj\Release\App.baml
-C:\Users\Thiago\source\repos\SSEDigitalV3\SSEDigitalV3\obj\Release\GeneratedInternalTypeHelper.g.cs
 C:\Users\Thiago\source\repos\SSEDigitalV3\SSEDigitalV3\obj\Release\SSEDigitalV3.csproj.ResolveComReference.cache
 C:\Users\Thiago\source\repos\SSEDigitalV3\SSEDigitalV3\obj\Release\ConsultSSE\editSSE.g.cs
 C:\Users\Thiago\source\repos\SSEDigitalV3\SSEDigitalV3\obj\Release\ConsultSSE\editSSE.baml
+C:\Users\Thiago\source\repos\SSEDigitalV3\SSEDigitalV3\obj\Release\NewSSEInterface\SSEupdated.g.cs
+C:\Users\Thiago\source\repos\SSEDigitalV3\SSEDigitalV3\obj\Release\NewSSEInterface\SSEupdated.baml

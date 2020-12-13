@@ -74,6 +74,11 @@ namespace SSEDigitalV3.AccountFeatures
             }
         }
 
+        public bool getUserLog()
+        {
+            return MainConstants.getInstance().loged_User!=null;
+        }
+
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             try

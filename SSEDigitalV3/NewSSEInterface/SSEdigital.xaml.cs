@@ -39,6 +39,8 @@ namespace SSEDigitalV3.NewSSEInterface
         TextBox SSEVisualInterface.textBoxValorOrc { get => this.textBoxValorOrc;}
         TextBox SSEVisualInterface.textBoxPeso { get => this.textBoxPeso; }
         TextBox SSEVisualInterface.textBoxRequisitante { get => this.textBoxRequisitante;}
+        TextBox SSEVisualInterface.textBoxCodigo { get => this.textBoxCodigo; }
+        TextBox SSEVisualInterface.textBoxReferencia { get => this.textBoxReferencia; }
         DatePicker SSEVisualInterface.datePickerPrazo { get => this.datePickerPrazo;}
         Xceed.Wpf.Toolkit.IntegerUpDown SSEVisualInterface.numericUpDownQuantidade { get => this.numericUpDownQuantidade;}
         #endregion
@@ -172,6 +174,11 @@ namespace SSEDigitalV3.NewSSEInterface
             {
                 throw new InputError(ex.Message, this.numericUpDownQuantidade);
             }
+
+            if (DateTime.Compare(returnStatement.Prazo, returnStatement.Data.AddDays(-1)) <= 0)
+            {
+                throw new InputError("Data de prazo anterior à data de geração da SSE.", this.datePickerPrazo);
+            }
             #endregion
 
             returnStatement.Requisicao = this.textBoxRequisicaoCompras.Text;
@@ -188,7 +195,7 @@ namespace SSEDigitalV3.NewSSEInterface
             {
                 SSEBean toInsert= this.makeSSE();
                 Miscelaneus.testInputSSE(toInsert, this);
-                SSEInsertResponse dialog = new SSEInsertResponse(new SSEDBWrapper(toInsert),this);
+                SSEInsertResponse dialog = new SSEInsertResponse(new SSEDBWrapper(toInsert),this,SSEInsertResponse.INSERT_SSE);
                 dialog.ShowDialog();
             }
             catch(InputError ex)
@@ -219,5 +226,18 @@ namespace SSEDigitalV3.NewSSEInterface
                 return null;
             }
         }
+
+        private void onClose(object sender, EventArgs e)
+        {
+            if (found_user == null)
+            {
+                var win = Application.Current.Windows;
+                foreach (Window iterator in win)
+                {
+                    iterator.Close();
+                }
+            }
+        }
+
     }
 }

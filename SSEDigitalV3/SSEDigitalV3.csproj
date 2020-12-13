@@ -229,6 +229,9 @@
     <Compile Include="NewSSEInterface\SSEdigital.xaml.cs">
       <DependentUpon>SSEdigital.xaml</DependentUpon>
     </Compile>
+    <Compile Include="NewSSEInterface\SSEupdated.xaml.cs">
+      <DependentUpon>SSEupdated.xaml</DependentUpon>
+    </Compile>
     <Compile Include="NewSSEInterface\SSEinserted.xaml.cs">
       <DependentUpon>SSEinserted.xaml</DependentUpon>
     </Compile>
@@ -275,6 +278,10 @@
     <Page Include="NewSSEInterface\SSEdigital.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="NewSSEInterface\SSEupdated.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="NewSSEInterface\SSEinserted.xaml">
       <SubType>Designer</SubType>

@@ -140,7 +140,13 @@ namespace SSEDigitalV3.ConsultSSE
             int id = ((DataInserter)this.DataGridSSEs.SelectedCells.ElementAt(0).Item).id;
             SSEMainDBConnector connector = new SSEMainDBConnector();
             SSEDBWrapper sse = connector.findSSE("id", id.ToString()).ElementAt(0);
-            (new editSSE(sse)).ShowDialog();
+            if (usr.CelulaString == "ALMOX" || usr.Superuser == true)
+            {
+                (new editSSE(sse,true)).ShowDialog();
+            }else
+            {
+                (new editSSE(sse,false)).ShowDialog();
+            }
         }
     }
 }

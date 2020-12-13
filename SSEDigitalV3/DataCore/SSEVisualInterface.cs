@@ -19,6 +19,8 @@ namespace SSEDigitalV3.DataCore
         TextBox textBoxValorOrc { get; }
         TextBox textBoxPeso { get;  }
         TextBox textBoxRequisitante { get;}
+        TextBox textBoxCodigo { get;}
+        TextBox textBoxReferencia { get;}
         DatePicker datePickerPrazo { get; }
         IntegerUpDown numericUpDownQuantidade { get;}
     }

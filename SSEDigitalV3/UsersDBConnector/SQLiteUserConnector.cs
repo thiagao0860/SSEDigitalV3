@@ -15,6 +15,7 @@ namespace SSEDigitalV3.UserDBConnector
         private static int matricula_user_table_index = 4;
         private static int email_user_table_index = 5;
         private static int setor_user_table_index = 6;
+        private static int superuser_user_table_index = 7;
 
         //mac table indexes 
         //
@@ -77,7 +78,8 @@ namespace SSEDigitalV3.UserDBConnector
                                     "ramal VARCHAR(255)," +
                                     "matricula VARCHAR(255)," +
                                     "email VARCHAR(255)," +
-                                    "setor TEXT)";
+                                    "setor TEXT, "+
+                                    "superuser BOOLEAN)";
                 sqlite_cmd = db_connection.CreateCommand();
                 sqlite_cmd.CommandText = Createsql;
                 sqlite_cmd.ExecuteNonQuery();
@@ -266,6 +268,8 @@ namespace SSEDigitalV3.UserDBConnector
                     return_set.Ramal = sqlite_datareader.GetString(ramal_user_table_index);
                     return_set.Email = sqlite_datareader.GetString(email_user_table_index);
                     return_set.Setor = sqlite_datareader.GetString(setor_user_table_index);
+                    return_set.Superuser = sqlite_datareader.GetBoolean(superuser_user_table_index);
+
                     return return_set;
                 }
                 else
@@ -306,6 +310,7 @@ namespace SSEDigitalV3.UserDBConnector
                     return_set.Ramal = sqlite_datareader.GetString(ramal_user_table_index);
                     return_set.Email = sqlite_datareader.GetString(email_user_table_index);
                     return_set.Setor = sqlite_datareader.GetString(setor_user_table_index);
+                    return_set.Superuser = sqlite_datareader.GetBoolean(superuser_user_table_index);
                     return return_set;
                 }
                 else

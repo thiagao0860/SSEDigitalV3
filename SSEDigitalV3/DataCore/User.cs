@@ -16,6 +16,7 @@ namespace SSEDigitalV3.DataCore
         private Int32 celula = CelulaOpts.CELULA_INT_NULL_CODE;
         private string email = null;
         private string setor = null;
+        private bool superuser = false;
 
         public string Matricula { get => matricula; set => matricula = value; }
         public string Nome { get => nome; set => nome = value; }
@@ -24,6 +25,7 @@ namespace SSEDigitalV3.DataCore
         public String CelulaString { get => getSavebleCelula(celula); set => celula = parseCelulaValue(value); }
         public string Setor { get => setor ; set => setor = value; }
         public string Email { get => email ; set => email = value; }
+        public bool Superuser { get => superuser ; set => superuser = value; }
         public Int32 Id { get => id; set => id = value; }
 
         public static Int32 parseCelulaValue(string value)

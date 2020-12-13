@@ -70,10 +70,6 @@ namespace SSEDigitalV3.GlobalTools
             {
                 throw new InputError("Campo requisitante obrigatório.", controler.textBoxRequisitante);
             }
-            if (DateTime.Compare(input.Prazo, input.Data.AddDays(-1)) <= 0)
-            {
-                throw new InputError("Data de prazo anterior à data de geração da SSE.", controler.datePickerPrazo);
-            }
             if ((!(input.Valor >= 0) || !(input.ValorOrc >= 0))
                 && (!(input.Quantidade > 0)))
             {

@@ -4,7 +4,7 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:SSEDigitalV3.NewSSEInterface"
-      xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes" x:Class="SSEDigitalV3.NewSSEInterface.SSEinserted"
+      xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes" x:Class="SSEDigitalV3.NewSSEInterface.SSEupdated"
       mc:Ignorable="d" 
       d:DesignHeight="471.6" d:DesignWidth="747.2"
       Title="SSEinserted">
@@ -22,8 +22,7 @@
         </Grid.ColumnDefinitions>
         <Image Grid.Column="0" Grid.Row="0" Source="/SSEDigitalV3;component/Assets/Image/sse-salva.png" Margin="20"/>
         <TextBlock x:Name="textBlockNome" Text="SSE n°:" Grid.Column="1" Margin="0,20,0,0" TextAlignment="Center" VerticalAlignment="Top" FontSize="22"/>
-        <TextBlock TextWrapping="Wrap" TextAlignment="Center" Text="SSE inserida com sucesso aos bancos de dados, mantenha se em posse deste número para consultas Futuras." 
-                   Width="300"  Grid.Column="1" Grid.Row="0" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="100.4,100,101.2,99.2" FontSize="16"/>
+        <TextBlock TextWrapping="Wrap" TextAlignment="Center" Text="SSE atualizada com sucesso aos bancos de dados, mantenha se em posse deste numero para consultas Futuras." Width="300"  Grid.Column="1" Grid.Row="0" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="100.4,100,101.2,99.2" FontSize="16"/>
         <StackPanel Grid.Row="1" Grid.ColumnSpan="2" Orientation="Horizontal">
             <materialDesign:PackIcon HorizontalAlignment="Stretch" Width="40" Height="auto" Kind="Contact" Margin="10"/>
             <TextBlock VerticalAlignment="Center" Text="Desenvolvedor: Thiago Alves - thiago_de_souza_alves@bat.com"/>
@@ -34,7 +33,6 @@
         </StackPanel>
         <StackPanel Grid.Row="3" Grid.ColumnSpan="2" Orientation="Horizontal" FlowDirection="RightToLeft">
             <Button Content="Sair" Margin="10" Height="25" Padding="20,0" Click="Button_Exit_Click"></Button>
-            <Button Content="Imprimir" Margin="10" Height="25" Padding="20,0" Click="Button_Print_Click"></Button>
             <Button Content="Solicitar Autorização" Margin="10" Height="25" Padding="20,0" IsEnabled="False"></Button>
         </StackPanel>
     </Grid>

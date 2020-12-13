@@ -40,7 +40,7 @@ namespace SSEDigitalV3
         {
             if (intent != null)
             {
-                if ((bool)this.checkBox1.IsChecked)
+                if (/*(bool)this.checkBox1.IsChecked*/false)
                 {
                     intent.putValue("dont_ask", "true");
                 }
@@ -58,7 +58,7 @@ namespace SSEDigitalV3
         {
             NewUserForm form = new NewUserForm();
             form.ShowDialog();
-            if (intent != null)
+            if (intent != null && form.getUserLog())
             {
                 intent.putValue(App.KEY_MAIN_OPTION, Info.NEW_USER_CREATED_OPTION);
                 this.Hide();

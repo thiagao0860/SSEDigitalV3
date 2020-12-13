@@ -19,24 +19,24 @@
         <Image Margin="25" Source="Assets/Image/ICONE chefe SOUZA CRUZ.png" />
         <Rectangle Grid.ColumnSpan="2" Fill="Gray" Height="5" Margin="50,0,50,0"  VerticalAlignment="Top" Grid.Row="1" RadiusY="2.5" RadiusX="2.5"/>
         <StackPanel Grid.Column="2" Orientation="Vertical" Margin="20">
-            <Label x:Name="labelTitulo" Content="Ola, Thiago" 
+            <Label x:Name="labelTitulo" Content="Ola, " 
                Margin="10,10,0,20"
                HorizontalAlignment="Left"
                Height="auto" Width="auto"
                FontSize="25" Foreground="White"
                />
-            <Label x:Name="labelConectAss" Content="Conectado como: Thiago de Souza Alves" 
+            <Label x:Name="labelConectAss" Content="Conectado como: " 
                Margin="10,0,0,0" HorizontalAlignment="Left"              
                Height="auto" Width="auto"
                    Uid="LabelNomeCompleto"
                    Foreground="White"
                />
-            <Label x:Name="labelMatricula" Content="Matricula: 10039895" 
+            <Label x:Name="labelMatricula" Content="Matricula: " 
                Margin="10,0,0,0" HorizontalAlignment="Left"              
                Height="auto" Width="auto"
                    Foreground="White"
                />
-            <Label x:Name="labelRamal" Content="Ramal : 8888" 
+            <Label x:Name="labelRamal" Content="Ramal : " 
                Margin="10,0,0,0" HorizontalAlignment="Left"              
                Height="auto" Width="auto"
                    Foreground="White"
@@ -76,8 +76,11 @@
                 </StackPanel>
             </materialDesign:Card>
         </StackPanel>
-        <materialDesign:PackIcon Grid.ColumnSpan="2"  Kind="Close" Height="20" Width="auto" HorizontalAlignment="Right"
-                                 Margin="0,10,10,0" VerticalAlignment="Top" Foreground="White" 
-                                 PreviewMouseDown="PackIcon_PreviewMouseDown" Cursor="Hand"/>
+        <materialDesign:Card PreviewMouseDown="PackIcon_PreviewMouseDown" Cursor="Hand"
+                             Grid.Column="1" Margin="0,10,10,0" VerticalAlignment="Top"
+                             HorizontalAlignment="Right">
+            <materialDesign:PackIcon Kind="Close" Height="20" Width="auto" 
+                                  Foreground="White" />
+        </materialDesign:Card>
     </Grid>
 </Window>

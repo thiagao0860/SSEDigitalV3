@@ -6,17 +6,14 @@
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         xmlns:local="clr-namespace:SSEDigitalV3"
         mc:Ignorable="d"
-        Title="SSE Digital" Height="600" Width="400" ResizeMode="NoResize" WindowStartupLocation="CenterScreen" Icon="iconeSC.ico" Background="#FFE7E7E7">
+        Title="SSE Digital" Height="346.4" Width="400" ResizeMode="NoResize" WindowStartupLocation="CenterScreen" Icon="iconeSC.ico" Background="#FFE7E7E7">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
-            <RowDefinition Height="0.5*"/>
             <RowDefinition Height="1*"/>
             <RowDefinition Height="1*"/>
-            <RowDefinition Height="2"/>
-            <RowDefinition Height="1.5*"/>
             <RowDefinition Height="1*"/>
         </Grid.RowDefinitions>
         <Separator  Height="1" Margin="10,87.8,9.6,0" Grid.Row="2" VerticalAlignment="Center" Grid.RowSpan="2"/>
@@ -46,30 +43,12 @@
                 <Label Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="12" >Cadastrar-se</Label>
             </Grid>
         </Button>
-        <Button  Grid.Row="5" Background="#00000000" BorderBrush="#00000000" Margin="0,9.8,-0.4,10.2"
-                 HorizontalContentAlignment="Stretch"
-                 VerticalContentAlignment="Stretch" Click="Button_Click_2">
-            <Grid Margin="10
-                  ">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="1*"/>
-                    <ColumnDefinition Width="3*"/>
-                </Grid.ColumnDefinitions>
-                <materialDesign:PackIcon Kind="Incognito" Height="30" VerticalAlignment="Center" Width="auto" HorizontalAlignment="Center"/>
-                <Label Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="12">Versão para Máquina anônima</Label>
-            </Grid>
-        </Button>
         <StackPanel Grid.Row="0">
 
-            <Label  Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="18" Margin="20">Selecione o Modo de Acesso ao Sistema:</Label>
+            <TextBlock TextWrapping="Wrap" TextAlignment="Center"  Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="18" Margin="20">Bem vindo ao sistema de gerenciamento de SSEs:</TextBlock>
             
 
         </StackPanel>
-        <StackPanel Grid.Row="4">
-
-            <TextBlock TextWrapping="Wrap"  Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="18" Margin="10" TextAlignment="Center" >Você ainda pode inserir seus dados manualmente, (isso não impede que caturemos informações sobre seu acesso):</TextBlock>
-            <CheckBox x:Name="checkBox1" Content="Salvar minha resposta e não perguntar novamente" Margin="30,20"/>
-
-        </StackPanel>
+        <StackPanel Grid.Row="4"/>
     </Grid>
 </Window>

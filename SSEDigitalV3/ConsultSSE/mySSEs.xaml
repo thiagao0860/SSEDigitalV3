@@ -22,7 +22,9 @@
                 <DataGridTemplateColumn IsReadOnly="True">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
-                            <materialDesign:PackIcon Kind="Edit" VerticalAlignment="Center" HorizontalAlignment="Center" MouseDoubleClick="editSSEClick"></materialDesign:PackIcon>
+                            <materialDesign:Card MouseDoubleClick="editSSEClick" Cursor="Hand">
+                                <materialDesign:PackIcon Kind="Edit" VerticalAlignment="Center" HorizontalAlignment="Center" ></materialDesign:PackIcon>
+                            </materialDesign:Card>
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>

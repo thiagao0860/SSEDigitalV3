@@ -35,7 +35,7 @@
             </Grid.ColumnDefinitions>
             <Image Grid.Column="0" Margin="5,5,7.6,5" Source="/SSEDigitalV3;component/Assets/Image/icon-chefe-mini.png"/>
 
-            <materialDesign:Card Margin="9.4,10,10.2,10" UniformCornerRadius="5" Grid.Column="4" Background="#FFFFD700" MouseLeftButtonDown="buttonExClick">
+            <materialDesign:Card x:Name="deleteSSEButton" Margin="9.4,10,10.2,10" UniformCornerRadius="5" Grid.Column="4" Background="#FFFFD700" MouseLeftButtonDown="buttonExClick">
                 <materialDesign:PackIcon Foreground="Black" Kind="Trash" VerticalAlignment="Center" HorizontalAlignment="Center" Width="30" Height="30"></materialDesign:PackIcon>
             </materialDesign:Card>
             <!--
@@ -176,7 +176,7 @@
                             <RowDefinition Height="1*"/>
                         </Grid.RowDefinitions>
                         <Label Grid.Row="0" Content="Data:" Foreground="Black" VerticalAlignment="Center" Margin="10,0,0,0"/>
-                        <TextBox x:Name="TextBoxData" Grid.Row="1" VerticalAlignment="Center" Margin="10,0,10,0" IsEnabled="False" HorizontalContentAlignment="Center"/>
+                        <TextBox x:Name="textBoxData" Grid.Row="1" VerticalAlignment="Center" Margin="10,0,10,0" IsEnabled="False" HorizontalContentAlignment="Center"/>
                     </Grid>
                     <Grid Grid.Column="1" Grid.Row="1" >
                         <Grid.RowDefinitions>
