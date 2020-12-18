@@ -123,14 +123,22 @@ namespace SSEDigitalV3.NewSSEInterface
              SSEBean returnStatement = new SSEBean(System.DateTime.Now);
              returnStatement.Tipo = (short)SSEBean.parseTipoValue(this.comboBoxTipo.Text);
              returnStatement.Fornecedor = (short)SSEBean.parseFornecedorValue(this.comboBoxProvider.Text);
-             returnStatement.Requisitante.Matricula = this.textBoxRequisitante.Text;
              returnStatement.Ordem = this.textBoxOrdem.Text;
              returnStatement.Codigo = this.textBoxCodigo.Text;
              returnStatement.Referencia = this.textBoxReferencia.Text;
              returnStatement.Nota = this.textBoxNota.Text;
-             returnStatement.Requisitante.Ramal = this.textBoxRamal.Text;
 
-             returnStatement.CelulaInt = User.parseCelulaValue(this.comboBoxCelula.Text);
+            if (found_user == null)
+            {
+                returnStatement.Requisitante.Matricula = this.textBoxRequisitante.Text;
+                returnStatement.Requisitante.Ramal = this.textBoxRamal.Text;
+                returnStatement.CelulaInt = User.parseCelulaValue(this.comboBoxCelula.Text);
+            }
+            else
+            {
+                returnStatement.Requisitante = found_user;
+            }
+
              returnStatement.Equipamento = this.textBoxEquipamento.Text;
              try
              {
