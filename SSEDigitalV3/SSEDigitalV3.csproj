@@ -213,6 +213,7 @@
     <Compile Include="DataCore\TypeDBWrapper.cs" />
     <Compile Include="DataCore\User.cs" />
     <Compile Include="ExcelIntegration\ExcelConnector.cs" />
+    <Compile Include="ExcelIntegration\GetSSEFromDeprecatedExcel.cs" />
     <Compile Include="GlobalTools\BackgroundEventHandler.cs" />
     <Compile Include="GlobalTools\InputError.cs" />
     <Compile Include="GlobalTools\Miscelaneus.cs" />

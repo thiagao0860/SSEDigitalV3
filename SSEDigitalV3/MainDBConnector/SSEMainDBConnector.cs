@@ -251,7 +251,7 @@ namespace SSEDigitalV3.MainDBConnector
                 sqlite_datareader = sqlite_cmd1.ExecuteReader();
                 while (sqlite_datareader.Read())
                 {
-                    returned = sqlite_datareader.GetInt32(0);
+                    returned = SafeGetInt32(sqlite_datareader,0);
                 }
                 SQLiteCommand sqlite_cmd;
                 sqlite_cmd = db_connection.CreateCommand();
@@ -356,7 +356,7 @@ namespace SSEDigitalV3.MainDBConnector
             {
                 SQLiteCommand sqlite_cmd;
                 sqlite_cmd = db_connection.CreateCommand();
-                sqlite_cmd.CommandText = "INSERT INTO MAIN(id" +
+                sqlite_cmd.CommandText = "INSERT INTO MAIN(id," +
                                                             "provider_id," +
                                                             " sse_data," +
                                                             " type_id," +
@@ -383,7 +383,7 @@ namespace SSEDigitalV3.MainDBConnector
                                                             " numero_orc," +
                                                             " numero_po," +
                                                             " valor_orc_retorno) " +
-                    "VALUES($id" +
+                    "VALUES($id," +
                           "$provider_id," +
                           " $sse_data," +
                           " $type_id," +
@@ -468,27 +468,27 @@ namespace SSEDigitalV3.MainDBConnector
                 while (sqlite_datareader.Read())
                 {
                     User nUser = new User();
-                    nUser.Matricula = sqlite_datareader.GetString(solicitante_main_table_index);
-                    nUser.Ramal = sqlite_datareader.GetString(ramal_main_table_index);
-                    nUser.CelulaString = sqlite_datareader.GetString(celula_main_table_index);
+                    nUser.Matricula = SafeGetString(sqlite_datareader, solicitante_main_table_index);
+                    nUser.Ramal = SafeGetString(sqlite_datareader,ramal_main_table_index);
+                    nUser.CelulaString = SafeGetString(sqlite_datareader,celula_main_table_index);
                     
                     SSEBean sse = new SSEBean(nUser);
-                    sse.Codigo = sqlite_datareader.GetString(codigo_main_table_index);
-                    sse.Data = sqlite_datareader.GetDateTime(data_main_table_index);
-                    sse.Descricao = sqlite_datareader.GetString(descricao_main_table_index);
-                    sse.Equipamento = sqlite_datareader.GetString(maquina_main_table_index);
-                    sse.Fornecedor = sqlite_datareader.GetInt16(fornecedor_main_table_index);
-                    sse.Nota = sqlite_datareader.GetString(nota_main_table_index);
-                    sse.Ordem = sqlite_datareader.GetString(ordem_main_table_index);
-                    sse.Peso = sqlite_datareader.GetFloat(peso_main_table_index);
-                    sse.Prazo = sqlite_datareader.GetDateTime(prazo_main_table_index);
-                    sse.Prioridade = sqlite_datareader.GetInt16(prioridade_main_table_index);
-                    sse.Quantidade = sqlite_datareader.GetInt16(quantidade_main_table_index);
-                    sse.Referencia = sqlite_datareader.GetString(referencia_main_table_index);
-                    sse.Requisicao = sqlite_datareader.GetString(requisicao_main_table_index);
-                    sse.Tipo = sqlite_datareader.GetInt16(tipo_main_table_index);
-                    sse.Valor = sqlite_datareader.GetFloat(valor_item_main_table_index);
-                    sse.ValorOrc = sqlite_datareader.GetFloat(valor_orc_main_table_index);
+                    sse.Codigo = SafeGetString(sqlite_datareader,codigo_main_table_index);
+                    sse.Data = SafeGetDateTime(sqlite_datareader,data_main_table_index);
+                    sse.Descricao = SafeGetString(sqlite_datareader,descricao_main_table_index);
+                    sse.Equipamento = SafeGetString(sqlite_datareader,maquina_main_table_index);
+                    sse.Fornecedor = SafeGetInt16(sqlite_datareader,fornecedor_main_table_index);
+                    sse.Nota = SafeGetString(sqlite_datareader,nota_main_table_index);
+                    sse.Ordem = SafeGetString(sqlite_datareader,ordem_main_table_index);
+                    sse.Peso = SafeGetFloat(sqlite_datareader,peso_main_table_index);
+                    sse.Prazo = SafeGetDateTime(sqlite_datareader,prazo_main_table_index);
+                    sse.Prioridade = SafeGetInt16(sqlite_datareader,prioridade_main_table_index);
+                    sse.Quantidade = SafeGetInt16(sqlite_datareader,quantidade_main_table_index);
+                    sse.Referencia = SafeGetString(sqlite_datareader,referencia_main_table_index);
+                    sse.Requisicao = SafeGetString(sqlite_datareader,requisicao_main_table_index);
+                    sse.Tipo = SafeGetInt16(sqlite_datareader,tipo_main_table_index);
+                    sse.Valor = SafeGetFloat(sqlite_datareader,valor_item_main_table_index);
+                    sse.ValorOrc = SafeGetFloat(sqlite_datareader,valor_orc_main_table_index);
 
                     SSEDBWrapper return_set = new SSEDBWrapper(sse);
                     return_set.codigo_do_produto = SafeGetString(sqlite_datareader, codigo_do_produto_main_table_index);
@@ -498,7 +498,7 @@ namespace SSEDigitalV3.MainDBConnector
                     return_set.numero_da_PO = SafeGetString(sqlite_datareader, po_num_main_table_index);
                     return_set.numero_do_orcamento = SafeGetString(sqlite_datareader, orc_num_main_table_index);
                     return_set.valor_do_orcamento_retorno = SafeGetFloat(sqlite_datareader, valor_orc_retorno_num_main_table_index);
-                    return_set.id = sqlite_datareader.GetInt32(id_main_table_index);
+                    return_set.id = SafeGetInt32(sqlite_datareader,id_main_table_index);
 
                     toReturnList.Add(return_set);
                 }
@@ -528,27 +528,27 @@ namespace SSEDigitalV3.MainDBConnector
                 while (sqlite_datareader.Read())
                 {
                     User nUser = new User();
-                    nUser.Matricula = sqlite_datareader.GetString(solicitante_main_table_index);
-                    nUser.Ramal = sqlite_datareader.GetString(ramal_main_table_index);
-                    nUser.CelulaString = sqlite_datareader.GetString(celula_main_table_index);
+                    nUser.Matricula = SafeGetString(sqlite_datareader,solicitante_main_table_index);
+                    nUser.Ramal = SafeGetString(sqlite_datareader,ramal_main_table_index);
+                    nUser.CelulaString = SafeGetString(sqlite_datareader,celula_main_table_index);
 
                     SSEBean sse = new SSEBean(nUser);
-                    sse.Codigo = sqlite_datareader.GetString(codigo_main_table_index);
-                    sse.Data = sqlite_datareader.GetDateTime(data_main_table_index);
-                    sse.Descricao = sqlite_datareader.GetString(descricao_main_table_index);
-                    sse.Equipamento = sqlite_datareader.GetString(maquina_main_table_index);
-                    sse.Fornecedor = sqlite_datareader.GetInt16(fornecedor_main_table_index);
-                    sse.Nota = sqlite_datareader.GetString(nota_main_table_index);
-                    sse.Ordem = sqlite_datareader.GetString(ordem_main_table_index);
-                    sse.Peso = sqlite_datareader.GetFloat(peso_main_table_index);
-                    sse.Prazo = sqlite_datareader.GetDateTime(prazo_main_table_index);
-                    sse.Prioridade = sqlite_datareader.GetInt16(prioridade_main_table_index);
-                    sse.Quantidade = sqlite_datareader.GetInt16(quantidade_main_table_index);
-                    sse.Referencia = sqlite_datareader.GetString(referencia_main_table_index);
-                    sse.Requisicao = sqlite_datareader.GetString(requisicao_main_table_index);
-                    sse.Tipo = sqlite_datareader.GetInt16(tipo_main_table_index);
-                    sse.Valor = sqlite_datareader.GetFloat(valor_item_main_table_index);
-                    sse.ValorOrc = sqlite_datareader.GetFloat(valor_orc_main_table_index);
+                    sse.Codigo = SafeGetString(sqlite_datareader,codigo_main_table_index);
+                    sse.Data = SafeGetDateTime(sqlite_datareader,data_main_table_index);
+                    sse.Descricao = SafeGetString(sqlite_datareader,descricao_main_table_index);
+                    sse.Equipamento = SafeGetString(sqlite_datareader,maquina_main_table_index);
+                    sse.Fornecedor = SafeGetInt16(sqlite_datareader,fornecedor_main_table_index);
+                    sse.Nota = SafeGetString(sqlite_datareader,nota_main_table_index);
+                    sse.Ordem = SafeGetString(sqlite_datareader,ordem_main_table_index);
+                    sse.Peso = SafeGetFloat(sqlite_datareader,peso_main_table_index);
+                    sse.Prazo = SafeGetDateTime(sqlite_datareader,prazo_main_table_index);
+                    sse.Prioridade = SafeGetInt16(sqlite_datareader,prioridade_main_table_index);
+                    sse.Quantidade = SafeGetInt16(sqlite_datareader,quantidade_main_table_index);
+                    sse.Referencia = SafeGetString(sqlite_datareader,referencia_main_table_index);
+                    sse.Requisicao = SafeGetString(sqlite_datareader,requisicao_main_table_index);
+                    sse.Tipo = SafeGetInt16(sqlite_datareader,tipo_main_table_index);
+                    sse.Valor = SafeGetFloat(sqlite_datareader,valor_item_main_table_index);
+                    sse.ValorOrc = SafeGetFloat(sqlite_datareader,valor_orc_main_table_index);
 
                     SSEDBWrapper return_set = new SSEDBWrapper(sse);
                     return_set.codigo_do_produto = SafeGetString(sqlite_datareader,codigo_do_produto_main_table_index);
@@ -558,7 +558,7 @@ namespace SSEDigitalV3.MainDBConnector
                     return_set.numero_da_PO = SafeGetString(sqlite_datareader,po_num_main_table_index);
                     return_set.numero_do_orcamento = SafeGetString(sqlite_datareader,orc_num_main_table_index);
                     return_set.valor_do_orcamento_retorno = SafeGetFloat(sqlite_datareader, valor_orc_retorno_num_main_table_index);
-                    return_set.id = sqlite_datareader.GetInt32(id_main_table_index);
+                    return_set.id = SafeGetInt32(sqlite_datareader,id_main_table_index);
 
                     toReturnList.Add(return_set);
                 }
@@ -687,7 +687,7 @@ namespace SSEDigitalV3.MainDBConnector
                 int returned = 0;
                 while (sqlite_datareader.Read())
                 {
-                    returned = sqlite_datareader.GetInt32(0);
+                    returned = SafeGetInt32(sqlite_datareader,0);
                 }
                 return returned;
             }
@@ -743,8 +743,8 @@ namespace SSEDigitalV3.MainDBConnector
                 sqlite_datareader = sqlite_cmd.ExecuteReader();
                 while (sqlite_datareader.Read())
                 {
-                    ProviderDBWrapper provider = new ProviderDBWrapper(sqlite_datareader.GetString(provider_providers__table_index));
-                    provider.id = sqlite_datareader.GetInt32(id_providers_table_index);
+                    ProviderDBWrapper provider = new ProviderDBWrapper(SafeGetString(sqlite_datareader,provider_providers__table_index));
+                    provider.id = SafeGetInt32(sqlite_datareader,id_providers_table_index);
                     toReturnList.Add(provider);
                 }
                 return toReturnList;
@@ -772,8 +772,8 @@ namespace SSEDigitalV3.MainDBConnector
                 sqlite_datareader = sqlite_cmd.ExecuteReader();
                 while (sqlite_datareader.Read())
                 {
-                    ProviderDBWrapper provider = new ProviderDBWrapper(sqlite_datareader.GetString(provider_providers__table_index));
-                    provider.id = sqlite_datareader.GetInt32(id_providers_table_index);
+                    ProviderDBWrapper provider = new ProviderDBWrapper(SafeGetString(sqlite_datareader,provider_providers__table_index));
+                    provider.id = SafeGetInt32(sqlite_datareader,id_providers_table_index);
                     toReturnList.Add(provider);
                 }
                 return toReturnList;
@@ -880,8 +880,8 @@ namespace SSEDigitalV3.MainDBConnector
                 sqlite_datareader = sqlite_cmd.ExecuteReader();
                 while (sqlite_datareader.Read())
                 {
-                    TypeDBWrapper type = new TypeDBWrapper(sqlite_datareader.GetString(type_types_table_index));
-                    type.id = sqlite_datareader.GetInt32(id_types_table_index);
+                    TypeDBWrapper type = new TypeDBWrapper(SafeGetString(sqlite_datareader,type_types_table_index));
+                    type.id = SafeGetInt32(sqlite_datareader,id_types_table_index);
                     toReturnList.Add(type);
                 }
                 return toReturnList;
@@ -909,8 +909,8 @@ namespace SSEDigitalV3.MainDBConnector
                 sqlite_datareader = sqlite_cmd.ExecuteReader();
                 while (sqlite_datareader.Read())
                 {
-                    TypeDBWrapper provider = new TypeDBWrapper(sqlite_datareader.GetString(type_types_table_index));
-                    provider.id = sqlite_datareader.GetInt32(id_types_table_index);
+                    TypeDBWrapper provider = new TypeDBWrapper(SafeGetString(sqlite_datareader,type_types_table_index));
+                    provider.id = SafeGetInt32(sqlite_datareader,id_types_table_index);
                     toReturnList.Add(provider);
                 }
                 return toReturnList;
@@ -1018,9 +1018,9 @@ namespace SSEDigitalV3.MainDBConnector
                 sqlite_datareader = sqlite_cmd.ExecuteReader();
                 while (sqlite_datareader.Read())
                 {
-                    CellDBWrapper cell = new CellDBWrapper(sqlite_datareader.GetString(cell_name_cell_table_index));
-                    cell.id = sqlite_datareader.GetInt32(id_cell_table_index);
-                    cell.setor = sqlite_datareader.GetInt32(setor_id_cell_table_index);
+                    CellDBWrapper cell = new CellDBWrapper(SafeGetString(sqlite_datareader,cell_name_cell_table_index));
+                    cell.id = SafeGetInt32(sqlite_datareader,id_cell_table_index);
+                    cell.setor = SafeGetInt32(sqlite_datareader,setor_id_cell_table_index);
                     toReturnList.Add(cell);
                 }
                 return toReturnList;
@@ -1048,9 +1048,9 @@ namespace SSEDigitalV3.MainDBConnector
                 sqlite_datareader = sqlite_cmd.ExecuteReader();
                 while (sqlite_datareader.Read())
                 {
-                    CellDBWrapper cell = new CellDBWrapper(sqlite_datareader.GetString(cell_name_cell_table_index));
-                    cell.id = sqlite_datareader.GetInt32(id_cell_table_index);
-                    cell.setor = sqlite_datareader.GetInt32(setor_id_cell_table_index);
+                    CellDBWrapper cell = new CellDBWrapper(SafeGetString(sqlite_datareader,cell_name_cell_table_index));
+                    cell.id = SafeGetInt32(sqlite_datareader,id_cell_table_index);
+                    cell.setor = SafeGetInt32(sqlite_datareader,setor_id_cell_table_index);
                     toReturnList.Add(cell);
                 }
                 return toReturnList;
@@ -1164,8 +1164,8 @@ namespace SSEDigitalV3.MainDBConnector
                 sqlite_datareader = sqlite_cmd.ExecuteReader();
                 while (sqlite_datareader.Read())
                 {
-                    SetorDBWrapper setor = new SetorDBWrapper(sqlite_datareader.GetString(sector_name_sections_table_index));
-                    setor.id = sqlite_datareader.GetInt32(s_id_sections_table_index);
+                    SetorDBWrapper setor = new SetorDBWrapper(SafeGetString(sqlite_datareader,sector_name_sections_table_index));
+                    setor.id = SafeGetInt32(sqlite_datareader,s_id_sections_table_index);
                     toReturnList.Add(setor);
                 }
                 return toReturnList;
@@ -1193,8 +1193,8 @@ namespace SSEDigitalV3.MainDBConnector
                 sqlite_datareader = sqlite_cmd.ExecuteReader();
                 while (sqlite_datareader.Read())
                 {
-                    SetorDBWrapper setor = new SetorDBWrapper(sqlite_datareader.GetString(sector_name_sections_table_index));
-                    setor.id = sqlite_datareader.GetInt32(s_id_sections_table_index);
+                    SetorDBWrapper setor = new SetorDBWrapper(SafeGetString(sqlite_datareader,sector_name_sections_table_index));
+                    setor.id = SafeGetInt32(sqlite_datareader,s_id_sections_table_index);
                     toReturnList.Add(setor);
                 }
                 return toReturnList;
@@ -1284,7 +1284,19 @@ namespace SSEDigitalV3.MainDBConnector
         {
             if (!reader.IsDBNull(colIndex))
                 return reader.GetDateTime(colIndex);
-            return new DateTime(0,0,0);
+            return new DateTime(1,1,1);
+        }
+        public static Int16 SafeGetInt16(SQLiteDataReader reader, int colIndex)
+        {
+            if (!reader.IsDBNull(colIndex))
+                return reader.GetInt16(colIndex);
+            return -1;
+        }
+        public static Int32 SafeGetInt32(SQLiteDataReader reader, int colIndex)
+        {
+            if (!reader.IsDBNull(colIndex))
+                return reader.GetInt32(colIndex);
+            return -1;
         }
     }
 }

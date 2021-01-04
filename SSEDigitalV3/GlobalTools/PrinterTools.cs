@@ -44,9 +44,9 @@ namespace SSEDigitalV3.GlobalTools
                 dialog.Filter = "PDF Files|*.pdf";
                 dialog.DefaultExt = ".pdf";
                 dialog.ShowDialog();
-                if (dialog.FileName == null) { Application.Exit(); }
+                if (dialog.FileName == null) { throw new Exception("invalid name"); }
                 String local = dialog.FileName;
-                if (String.IsNullOrWhiteSpace(local)) { Application.Exit(); }
+                if (String.IsNullOrWhiteSpace(local)) { throw new Exception("invalid name"); }
                 FileStream dest = new FileStream(local, FileMode.Create);
 
                 var writer = new PdfWriter(dest);
@@ -80,8 +80,8 @@ namespace SSEDigitalV3.GlobalTools
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Não foi possível imprimir a SSE");
-                Console.WriteLine(ex.StackTrace);
+                MessageBox.Show("Não foi possível imprimir a SSE " + (cur==null));
+                Console.WriteLine("my log "+ex.StackTrace);
             }
         }
 

@@ -1,4 +1,7 @@
 ﻿using SSEDigitalV3.DataCore;
+using SSEDigitalV3.ExcelIntegration;
+using SSEDigitalV3.GlobalTools;
+using SSEDigitalV3.MainDBConnector;
 using SSEDigitalV3.NewSSEInterface;
 using SSEDigitalV3.UserDBConnector;
 using System;
@@ -24,6 +27,17 @@ namespace SSEDigitalV3
         {
             
             connector = new SQLiteUserConnector();
+            
+            SSEMainDBConnector mainDBConnector = new SSEMainDBConnector();
+            /*
+            for (int i = 500; i < 600; i++)
+            {
+                SSEDBWrapper sSEBean = GetSSEFromDeprecatedExcel.getInstance().findDBById(i.ToString());
+                mainDBConnector.insertSSE(sSEBean, sSEBean.id);
+                Console.WriteLine(sSEBean.id + " inserted");
+                //(new PrinterTools(sSEBean)).printSSE();
+            }
+            */
             
             if (MainConstants.getInstance().version_enabled == 1)
             {
@@ -96,6 +110,7 @@ namespace SSEDigitalV3
                    
                 }
             }
+            
         }
     }
 
