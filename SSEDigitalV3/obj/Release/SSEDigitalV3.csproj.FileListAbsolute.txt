@@ -109,3 +109,5 @@ C:\Users\Thiago\source\repos\SSEDigitalV3\SSEDigitalV3\obj\Release\NewSSEInterfa
 C:\Users\Thiago\source\repos\SSEDigitalV3\SSEDigitalV3\obj\Release\NewSSEInterface\SSEupdated.baml
 C:\Users\Thiago\source\repos\SSEDigitalV3\SSEDigitalV3\obj\Release\GlobalTools\UserInserter.g.cs
 C:\Users\Thiago\source\repos\SSEDigitalV3\SSEDigitalV3\obj\Release\GlobalTools\UserInserter.baml
+C:\Users\Thiago\source\repos\SSEDigitalV3\SSEDigitalV3\obj\Release\ConsultSSE\ConfirmOrder.g.cs
+C:\Users\Thiago\source\repos\SSEDigitalV3\SSEDigitalV3\obj\Release\ConsultSSE\ConfirmOrder.baml

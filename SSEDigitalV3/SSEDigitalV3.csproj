@@ -194,6 +194,9 @@
     <Compile Include="AccountFeatures\NewUserForm.xaml.cs">
       <DependentUpon>NewUserForm.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ConsultSSE\ConfirmOrder.xaml.cs">
+      <DependentUpon>ConfirmOrder.xaml</DependentUpon>
+    </Compile>
     <Compile Include="ConsultSSE\editSSE.xaml.cs">
       <DependentUpon>editSSE.xaml</DependentUpon>
     </Compile>
@@ -248,6 +251,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="AccountFeatures\NewUserForm.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ConsultSSE\ConfirmOrder.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

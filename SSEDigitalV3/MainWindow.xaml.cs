@@ -48,7 +48,7 @@ namespace SSEDigitalV3
 
         private void Card1_PreviewMouseDown(object sender, MouseButtonEventArgs e)
         {
-            if (foundUser.CelulaString.Equals("ALMOX") || foundUser.Superuser==true)
+            if (foundUser.CelulaString.Equals("ALMOX"))
             {
                 MessageBoxResult result =MessageBox.Show("Você está criando esta SSE para outro usuário?", "Nominal", MessageBoxButton.YesNo);
                 if (result==MessageBoxResult.Yes)

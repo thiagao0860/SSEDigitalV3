@@ -27,18 +27,16 @@ namespace SSEDigitalV3
         {
             
             connector = new SQLiteUserConnector();
-            
-            SSEMainDBConnector mainDBConnector = new SSEMainDBConnector();
             /*
             for (int i = 500; i < 600; i++)
             {
+                SSEMainDBConnector mainDBConnector = new SSEMainDBConnector();
                 SSEDBWrapper sSEBean = GetSSEFromDeprecatedExcel.getInstance().findDBById(i.ToString());
                 mainDBConnector.insertSSE(sSEBean, sSEBean.id);
                 Console.WriteLine(sSEBean.id + " inserted");
                 //(new PrinterTools(sSEBean)).printSSE();
             }
             */
-            
             if (MainConstants.getInstance().version_enabled == 1)
             {
                 (new SSEdigital()).ShowDialog();
@@ -110,8 +108,6 @@ namespace SSEDigitalV3
                    
                 }
             }
-            
         }
     }
-
 }
