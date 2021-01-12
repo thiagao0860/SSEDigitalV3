@@ -93,6 +93,10 @@ namespace SSEDigitalV3
             this.labelConectAss.Content = "Conectado Como: "+ foundUser.Nome;
             this.labelMatricula.Content = "Matricula: " + foundUser.Matricula;
             this.labelRamal.Content = "Ramal: " + foundUser.Ramal;
+            if (foundUser.CelulaString.Equals("ALMOX"))
+            {
+                this.InsertPOButton.Visibility = Visibility.Visible;
+            }
         } 
 
         //My personalized close icon
@@ -103,6 +107,11 @@ namespace SSEDigitalV3
             {
                 iterator.Close();
             }
+        }
+
+        private void insertPOClick(object sender, MouseButtonEventArgs e)
+        {
+
         }
     }
 }

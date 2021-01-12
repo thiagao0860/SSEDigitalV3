@@ -82,5 +82,15 @@
             <materialDesign:PackIcon Kind="Close" Height="20" Width="auto" 
                                   Foreground="White" />
         </materialDesign:Card>
+        <materialDesign:Card x:Name="InsertPOButton"  Cursor="Hand"
+                             materialDesign:UniformCornerRadius="10" Height="30"
+                             Grid.Column="1" Margin="40,20" VerticalAlignment="Bottom"
+                             HorizontalAlignment="Right" Background="#FFD700" Visibility="Hidden" MouseDown="insertPOClick">
+            <StackPanel Orientation="Horizontal">
+                <materialDesign:PackIcon Kind="InsertDriveFile" Height="20" Width="auto" VerticalAlignment="Center" 
+                                  Foreground="Black" Margin="10,0,0,0"/>
+                <Label VerticalAlignment="Center" Margin="10,0">Inserir PO</Label>
+            </StackPanel>
+        </materialDesign:Card>
     </Grid>
 </Window>

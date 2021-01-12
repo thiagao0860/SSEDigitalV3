@@ -270,7 +270,7 @@
         </Border>
 
 
-        <Grid Grid.Row="3" Margin="10,107.8,9.4,-0.8" Grid.ColumnSpan="2" Grid.RowSpan="2">
+        <Grid Grid.Row="5" Margin="0" Grid.ColumnSpan="2">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="7*"/>
                 <ColumnDefinition Width="2*"/>

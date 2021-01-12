@@ -17,9 +17,9 @@ namespace SSEDigitalV3.ConsultSSE
     /// <summary>
     /// Lógica interna para ConfirmOrder.xaml
     /// </summary>
-    public partial class ConfirmOrder : Window
+    public partial class confirmOrder : Window
     {
-        public ConfirmOrder()
+        public confirmOrder()
         {
             InitializeComponent();
         }
