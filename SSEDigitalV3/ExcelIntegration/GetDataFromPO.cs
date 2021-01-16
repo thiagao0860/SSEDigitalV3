@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SSEDigitalV3.DataCore;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -7,107 +8,86 @@ using Excel = Microsoft.Office.Interop.Excel;
 
 namespace SSEDigitalV3.ExcelIntegration
 {
+    
     class GetDataFromPO
     {
-        private static String PATH;
-        private static readonly String SHEET_NAME = "Cópia PO";
+        private String PATH;
+        private static readonly String SHEET_NAME_DATA_LIST = "Cópia PO"; //TODO:trocar string por integer 
+        private static readonly String SHEET_NAME_HEADER = "TemplatePO"; //TODO:trocar string por integer 
         
         public GetDataFromPO(string path)
         {
-            PATH = path;
+            this.PATH = path;
         }
 
-        public string findDBById(String id)
+        public POWrapper findPOData()
         {
-            Console.WriteLine(PATH);
             Excel.Application xlApp = null;
             try
             {
-                Excel.Workbook xlWorkBook;
-                Excel.Worksheet xlWorkSheet;
                 object misValue = System.Reflection.Missing.Value;
                 xlApp = new Excel.Application();
-                Console.WriteLine(PATH);
-                xlWorkBook = xlApp.Workbooks.Open(PATH);
-                xlWorkSheet = (Excel.Worksheet)xlWorkBook.Worksheets.get_Item(SHEET_NAME);
-                
-                int line = Int32.Parse(id);
-                SSEDBWrapper found = getSSE(line, xlWorkSheet);
+                xlApp.AutomationSecurity = Microsoft.Office.Core.MsoAutomationSecurity.msoAutomationSecurityForceDisable;
+                Excel.Workbook xlWorkBook = xlApp.Workbooks.Open(this.PATH);
+                Excel.Worksheet xlWorkSheet_DataList = (Excel.Worksheet)xlWorkBook.Worksheets.get_Item(GetDataFromPO.SHEET_NAME_DATA_LIST);
+                Excel.Worksheet xlWorkSheet_Header = (Excel.Worksheet)xlWorkBook.Worksheets.get_Item(GetDataFromPO.SHEET_NAME_HEADER);
+
+                POWrapper found = new POWrapper();
+                found.vSetor = forceStringValue(xlWorkSheet_Header.get_Range("H5").Value2);
+                found.vMaterial = forceStringValue(xlWorkSheet_Header.get_Range("H7").Value2);
+                found.vServiceDetails = forceStringValue(xlWorkSheet_Header.get_Range("H9").Value2);
+                found.fornecedor = forceStringValue(xlWorkSheet_Header.get_Range("H13").Value2);
+                found.vCNPJ = forceStringValue(xlWorkSheet_Header.get_Range("P13").Value2);
+                found.vInternalCNPJ = forceStringValue(xlWorkSheet_Header.get_Range("P15").Value2);
+
+                int line = 5;
+                while (!forceStringValue(xlWorkSheet_DataList.get_Range("B"+line).Value2).Equals("0")) {
+                    PORow serviceRow = getRow(line, xlWorkSheet_DataList);
+                    found.servicesInfo.Add(serviceRow);
+                    line++;
+                }
 
                 xlWorkBook.Close(misValue, misValue, misValue);
-                liberarObjetos(xlWorkSheet);
+                liberarObjetos(xlWorkSheet_DataList);
+                liberarObjetos(xlWorkSheet_Header);
                 liberarObjetos(xlWorkBook);
                 xlApp = (Excel.Application)liberarObjetos(xlApp);
                 return found;
             }
             catch (Exception e)
             {
-                Console.WriteLine("input : " + e.StackTrace);
+                Console.WriteLine("input : " + e.Message);
             }
             finally
             {
                 if (!(xlApp is null))
                 {
                     xlApp.Quit();
-                    Console.WriteLine(PATH);
                 }
             }
             return null;
         }
 
-
-        private static SSEDBWrapper getSSE(Int32 line, Excel.Worksheet sheet)
+        
+        private static PORow getRow(Int32 line, Excel.Worksheet sheet)
         {
             try
             {
-                var cur = sheet.get_Range("A" + line, "A" + line).Value2;
-                if (testNullValue(cur))
-                {
-                    return null;
-                }
-                SSEBean returnStatement = new SSEBean();
-
-                var transcription = sheet.get_Range("A" + line, "A" + line).Value;
-                if (!testNullValue(cur))
-                {
-                    returnStatement.id = forceStringValue(transcription);
-                    returnStatement.Fornecedor = short.Parse(forceStringValue(sheet.get_Range("B" + line, "B" + line).Value));
-                    returnStatement.Data = DateTime.ParseExact(forceStringValue(sheet.get_Range("D" + line, "D" + line).Value), "dd/MM/yyyy", CultureInfo.InvariantCulture);
-                    returnStatement.Tipo = short.Parse(forceStringValue(sheet.get_Range("E" + line, "E" + line).Value));
-                    returnStatement.Codigo = forceStringValue(sheet.get_Range("G" + line, "G" + line).Value);
-                    returnStatement.Referencia = forceStringValue(sheet.get_Range("H" + line, "H" + line).Value);
-                    returnStatement.Descricao = forceStringValue(sheet.get_Range("I" + line, "I" + line).Value);
-                    returnStatement.Requisitante.Matricula = forceStringValue(sheet.get_Range("J" + line, "J" + line).Value);
-                    returnStatement.Ramal = forceStringValue(sheet.get_Range("L" + line, "L" + line).Value);
-                    returnStatement.CelulaString = forceStringValue(sheet.get_Range("M" + line, "M" + line).Value);
-                    returnStatement.Equipamento = forceStringValue(sheet.get_Range("N" + line, "N" + line).Value);
-                    returnStatement.Ordem = forceStringValue(sheet.get_Range("O" + line, "O" + line).Value);
-                    returnStatement.Requisicao = forceStringValue(sheet.get_Range("P" + line, "P" + line).Value);
-                    returnStatement.Nota = forceStringValue(sheet.get_Range("Q" + line, "Q" + line).Value);
-                    returnStatement.Prazo = DateTime.ParseExact(forceStringValue(sheet.get_Range("R" + line, "R" + line).Value), "dd/MM/yyyy", CultureInfo.InvariantCulture);
-                    returnStatement.Valor = float.Parse(forceStringValue(sheet.get_Range("T" + line, "T" + line).Value), new CultureInfo("en-US"));
-                    returnStatement.ValorOrc = float.Parse(forceStringValue(sheet.get_Range("U" + line, "U" + line).Value), new CultureInfo("en-US"));
-                    returnStatement.Prioridade = int.Parse(forceStringValue(sheet.get_Range("V" + line, "V" + line).Value));
-                    returnStatement.Peso = float.Parse(forceStringValue(sheet.get_Range("W" + line, "W" + line).Value), new CultureInfo("en-US"));
-                    returnStatement.Quantidade = int.Parse(forceStringValue(sheet.get_Range("X" + line, "X" + line).Value));
-                }
-
-                SSEDBWrapper wrapper = new SSEDBWrapper(returnStatement);
-
-                wrapper.id = long.Parse(forceStringValue(transcription));
-                wrapper.iss = forceStringValue(sheet.get_Range("AB" + line, "AB" + line).Value);
-                wrapper.codigo_do_servico = forceStringValue(sheet.get_Range("AC" + line, "AC" + line).Value);
-                wrapper.codigo_do_produto = forceStringValue(sheet.get_Range("AD" + line, "AD" + line).Value);
-                wrapper.numero_do_orcamento = forceStringValue(sheet.get_Range("AE" + line, "AE" + line).Value);
-                wrapper.numero_da_PO = forceStringValue(sheet.get_Range("AF" + line, "AF" + line).Value);
-                if (!testNullValue(sheet.get_Range("AF" + line, "AF" + line)))
-                {
-                    wrapper.valor_do_orcamento_retorno = float.Parse(forceStringValue(sheet.get_Range("AF" + line, "AF" + line).Value), new CultureInfo("en-US"));
-                }
-                if (sheet.get_Range("S" + line, "S" + line).Value != null)
-                {
-                    wrapper.data_recebimento = DateTime.FromOADate(Double.Parse(sheet.get_Range("S" + line, "S" + line).Value2.ToString()));
-                }
+                PORow wrapper = new PORow();
+                wrapper.description = forceStringValue( sheet.get_Range("B" + line).Value2);
+                wrapper.amount = forceDoubleValue( sheet.get_Range("C" + line).Value2);
+                wrapper.classificacaoFiscal_NCM = forceStringValue( sheet.get_Range("D" + line).Value2);
+                wrapper.cenntro_de_Custo = forceStringValue( sheet.get_Range("E" + line).Value2);
+                wrapper.codServico = forceStringValue(sheet.get_Range("F" + line).Value2);
+                wrapper.unitValue = forceDoubleValue(sheet.get_Range("G" + line).Value2);
+                wrapper.iSSMode = forceStringValue(sheet.get_Range("H" + line).Value2);
+                wrapper.iSSAliq = forceDoubleValue(sheet.get_Range("I" + line).Value2);
+                wrapper.iCMSdest = forceStringValue(sheet.get_Range("K" + line).Value2);
+                wrapper.iCMSaliq = forceDoubleValue(sheet.get_Range("L" + line).Value2);
+                wrapper.iPIdest = forceStringValue(sheet.get_Range("M" + line).Value2);
+                wrapper.iPIaliq = forceDoubleValue( sheet.get_Range("N" + line).Value2);
+                wrapper.unitValueSAP = forceDoubleValue(sheet.get_Range("O" + line).Value2);
+                wrapper.iCMSST = forceStringValue(sheet.get_Range("P" + line).Value2);
                 return wrapper;
             }
             catch (Exception e)
@@ -116,11 +96,8 @@ namespace SSEDigitalV3.ExcelIntegration
                 Console.WriteLine("look error ST:" + e.StackTrace);
                 return null;
             }
-            finally
-            {
-
-            }
         }
+        
 
         private static Boolean testNullValue(Object cur)
         {
@@ -139,7 +116,7 @@ namespace SSEDigitalV3.ExcelIntegration
             }
             else
             {
-                valor = null;
+                throw new Exception("tipo: " + (cur.GetType()).ToString() +"nao suportado.");
             }
             return String.IsNullOrWhiteSpace(valor);
         }
@@ -153,7 +130,7 @@ namespace SSEDigitalV3.ExcelIntegration
             }
             else if (cur is Double)
             {
-                valor = "" + cur;
+                valor = "" + cur.ToString();
             }
             else if (cur is Int16 || cur is Int32 || cur is Int64)
             {
@@ -161,12 +138,54 @@ namespace SSEDigitalV3.ExcelIntegration
             }
             else
             {
-                valor = null;
+                throw new Exception("tipo: " + (cur.GetType()).ToString() + "nao suportado.");
             }
             return valor;
         }
 
+        private static Double forceDoubleValue(Object cur)
+        {
+            double valor;
+            if (cur is String)
+            {
+                valor = Double.Parse((String)cur);
+            }
+            else if (cur is Double)
+            {
+                valor = (double)cur;
+            }
+            else if (cur is Int16 || cur is Int32 || cur is Int64)
+            {
+                valor = (double)cur;
+            }
+            else
+            {
+                throw new Exception("tipo: " + (cur.GetType()).ToString() + "nao suportado.");
+            }
+            return valor;
+        }
 
+        private static Int64 forceIntegerValue(Object cur)
+        {
+            Int64 valor;
+            if (cur is String)
+            {
+                valor = Int64.Parse((String)cur);
+            }
+            else if (cur is Double)
+            {
+                valor = (Int64)cur;
+            }
+            else if (cur is Int16 || cur is Int32 || cur is Int64)
+            {
+                valor = (Int64)cur;
+            }
+            else
+            {
+                throw new Exception("tipo: " + (cur.GetType()).ToString() + "nao suportado.");
+            }
+            return valor;
+        }
 
         private Object liberarObjetos(object obj)
         {
@@ -188,4 +207,5 @@ namespace SSEDigitalV3.ExcelIntegration
 
 
     }
+    
 }

@@ -77,6 +77,7 @@ namespace SSEDigitalV3.GlobalTools
 
                 document.Add(table2);
                 document.Close();
+                System.Diagnostics.Process.Start(local);
             }
             catch (Exception ex)
             {

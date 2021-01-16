@@ -111,7 +111,7 @@ namespace SSEDigitalV3
 
         private void insertPOClick(object sender, MouseButtonEventArgs e)
         {
-
+            (new confirmOrder()).ShowDialog();
         }
     }
 }

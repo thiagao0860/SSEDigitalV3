@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace SSEDigitalV3.DataCore
 {
-    struct PORow
+    internal class PORow
     {
         public String description;
         public Double amount;
@@ -26,10 +26,12 @@ namespace SSEDigitalV3.DataCore
     class POWrapper
     {
         public String vPOONumber;
+        public String vSetor;
+        public String vMaterial;
+        public String vServiceDetails;
         public String fornecedor;
         public String vCNPJ;
-        public Double grossValue;
-        public Double netValue;
+        public String vInternalCNPJ;
         public List<PORow> servicesInfo = new List<PORow>();
 
         public POWrapper()
