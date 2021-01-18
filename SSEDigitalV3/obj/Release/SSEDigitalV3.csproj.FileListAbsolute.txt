@@ -111,3 +111,5 @@ C:\Users\Thiago\source\repos\SSEDigitalV3\SSEDigitalV3\obj\Release\GlobalTools\U
 C:\Users\Thiago\source\repos\SSEDigitalV3\SSEDigitalV3\obj\Release\GlobalTools\UserInserter.baml
 C:\Users\Thiago\source\repos\SSEDigitalV3\SSEDigitalV3\obj\Release\ConsultSSE\ConfirmOrder.g.cs
 C:\Users\Thiago\source\repos\SSEDigitalV3\SSEDigitalV3\obj\Release\ConsultSSE\ConfirmOrder.baml
+C:\Users\Thiago\source\repos\SSEDigitalV3\SSEDigitalV3\obj\Release\GlobalTools\LoadTool.g.cs
+C:\Users\Thiago\source\repos\SSEDigitalV3\SSEDigitalV3\obj\Release\GlobalTools\LoadTool.baml

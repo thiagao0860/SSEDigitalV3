@@ -1,9 +1,13 @@
 ﻿using SSEDigitalV3.DataCore;
 using SSEDigitalV3.ExcelIntegration;
+using SSEDigitalV3.GlobalTools;
+using SSEDigitalV3.MainDBConnector;
 using System;
+using System.Activities.Statements;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -14,6 +18,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using MessageBox = System.Windows.MessageBox;
 
 namespace SSEDigitalV3.ConsultSSE
 {
@@ -24,6 +29,8 @@ namespace SSEDigitalV3.ConsultSSE
     {
         String path = null;
         String ordem = null;
+        LoadTool lt;
+        public Boolean ltst = false;
         public confirmOrder()
         {
             InitializeComponent();
@@ -43,7 +50,14 @@ namespace SSEDigitalV3.ConsultSSE
 
         private void insertPOButton_onClick(object sender, RoutedEventArgs e)
         {
-            POWrapper po = (new GetDataFromPO(path)).findPOData();
+            insertPO();
+            //startLoading();
+        }
+
+        private async void startLoading() {
+            
+                this.lt = new LoadTool(this);
+                this.lt.Show();
             
         }
 
@@ -51,5 +65,44 @@ namespace SSEDigitalV3.ConsultSSE
         {
             System.Diagnostics.Process.Start(Environment.CurrentDirectory + "\\documentation\\help\\insertPOhelp.pdf");
         }
+
+        public async Task insertPO()
+        {
+            string nPath= this.path;
+            string nPOnumber = this.ordemTextBox.Text;
+            bool nlt = this.ltst;
+
+            await Task.Run(() =>
+            {
+                try
+                {
+                    POWrapper po = (new GetDataFromPO(nPath)).findPOData();
+                    po.vPONumber = nPOnumber;
+                    SSEMainDBConnector connector = new SSEMainDBConnector();
+                    foreach (PORow iterator in po.servicesInfo)
+                    {
+                        int separator_index = iterator.description.IndexOf("/");
+                        if (separator_index <= 0 || separator_index >= iterator.description.Length) throw new Exception("Separador Especifico não encontrado.");
+                        string id = iterator.description.Substring(0, separator_index);
+                        string service_number = iterator.description.Substring(separator_index + 1);
+                        List<SSEDBWrapper> sse_vector = connector.findSSE("id", id);
+                        if (sse_vector.Count <= 0) { throw new Exception("SSE de Número: " + id + "não encontrada no Banco de Dados, por favor revise o template de entrada."); }
+                        SSEDBWrapper sse = sse_vector.ElementAt(0);
+                        sse.numero_da_PO = po.vPONumber;
+                        sse.iss = iterator.iSSAliq.ToString();
+                        sse.valor_do_orcamento_retorno = (float)iterator.unitValueSAP;
+                        sse.numero_do_orcamento = service_number;
+                        connector.updateSSE(int.Parse(id), sse);
+                    }
+                    MessageBox.Show("PO inserida");
+
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+            });
+        }
+
     }
 }

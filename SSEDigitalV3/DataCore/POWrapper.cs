@@ -25,7 +25,7 @@ namespace SSEDigitalV3.DataCore
     }
     class POWrapper
     {
-        public String vPOONumber;
+        public String vPONumber;
         public String vSetor;
         public String vMaterial;
         public String vServiceDetails;

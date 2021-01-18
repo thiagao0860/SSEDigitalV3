@@ -123,6 +123,7 @@ namespace SSEDigitalV3.ExcelIntegration
 
         private static String forceStringValue(Object cur)
         {
+            if (cur == null) return null;
             string valor;
             if (cur is String)
             {
@@ -145,6 +146,7 @@ namespace SSEDigitalV3.ExcelIntegration
 
         private static Double forceDoubleValue(Object cur)
         {
+            if (cur == null) return 0;
             double valor;
             if (cur is String)
             {
@@ -167,6 +169,7 @@ namespace SSEDigitalV3.ExcelIntegration
 
         private static Int64 forceIntegerValue(Object cur)
         {
+            if (cur == null) return 0;
             Int64 valor;
             if (cur is String)
             {

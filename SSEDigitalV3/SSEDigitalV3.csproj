@@ -127,6 +127,7 @@
       <HintPath>..\packages\Svg2Xaml.0.3.0.7\lib\net40\Svg2Xaml.dll</HintPath>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.Activities" />
     <Reference Include="System.Buffers, Version=4.0.2.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
       <HintPath>..\packages\System.Buffers.4.4.0\lib\netstandard2.0\System.Buffers.dll</HintPath>
     </Reference>
@@ -221,6 +222,9 @@
     <Compile Include="ExcelIntegration\GetSSEFromDeprecatedExcel.cs" />
     <Compile Include="GlobalTools\BackgroundEventHandler.cs" />
     <Compile Include="GlobalTools\InputError.cs" />
+    <Compile Include="GlobalTools\LoadTool.xaml.cs">
+      <DependentUpon>LoadTool.xaml</DependentUpon>
+    </Compile>
     <Compile Include="GlobalTools\Miscelaneus.cs" />
     <Compile Include="GlobalTools\PrinterTools.cs" />
     <Compile Include="GlobalTools\QRCodeTools.cs" />
@@ -265,6 +269,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="ConsultSSE\mySSEs.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="GlobalTools\LoadTool.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -427,6 +435,12 @@
       <ProductName>.NET Framework 3.5 SP1</ProductName>
       <Install>false</Install>
     </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="GlobalTools\project-icon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="GlobalTools\target_loading.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\packages\Stub.System.Data.SQLite.Core.NetFramework.1.0.113.3\build\net46\Stub.System.Data.SQLite.Core.NetFramework.targets" Condition="Exists('..\packages\Stub.System.Data.SQLite.Core.NetFramework.1.0.113.3\build\net46\Stub.System.Data.SQLite.Core.NetFramework.targets')" />
