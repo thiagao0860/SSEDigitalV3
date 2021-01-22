@@ -21,17 +21,16 @@ namespace SSEDigitalV3.GlobalTools
     /// </summary>
     public partial class LoadTool : Window
     {
-        private Window parent;
+        private Window parent=null;
         public LoadTool(Window parent)
         {
             this.parent = parent;
             InitializeComponent();
         }
-
-        private void onRenderedAsync(object sender, EventArgs e)
+        public LoadTool()
         {
-           // while (!((confirmOrder)this.parent).ltst) Thread.Sleep(1000);
-            //this.Close();
+            InitializeComponent();
         }
+
     }
 }

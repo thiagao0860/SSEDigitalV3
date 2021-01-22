@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:SSEDigitalV3.GlobalTools"
         mc:Ignorable="d"
-        Title="Carregando" Height="180.589" Width="372.882" ResizeMode="NoResize" WindowStartupLocation="CenterScreen" Cursor="Wait" ContentRendered="onRenderedAsync">
+        Title="Carregando" Height="180.589" Width="372.882" ResizeMode="NoResize" WindowStartupLocation="CenterScreen" Cursor="Wait">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="1*"/>

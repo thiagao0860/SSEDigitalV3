@@ -221,6 +221,7 @@
     <Compile Include="ExcelIntegration\GetDataFromPO.cs" />
     <Compile Include="ExcelIntegration\GetSSEFromDeprecatedExcel.cs" />
     <Compile Include="GlobalTools\BackgroundEventHandler.cs" />
+    <Compile Include="GlobalTools\BgpLoadToolDelegate.cs" />
     <Compile Include="GlobalTools\InputError.cs" />
     <Compile Include="GlobalTools\LoadTool.xaml.cs">
       <DependentUpon>LoadTool.xaml</DependentUpon>

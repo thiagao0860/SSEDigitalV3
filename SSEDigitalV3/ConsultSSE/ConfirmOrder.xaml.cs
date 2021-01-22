@@ -5,6 +5,7 @@ using SSEDigitalV3.MainDBConnector;
 using System;
 using System.Activities.Statements;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading;
@@ -25,12 +26,54 @@ namespace SSEDigitalV3.ConsultSSE
     /// <summary>
     /// Lógica interna para ConfirmOrder.xaml
     /// </summary>
+    /// 
+    public class BgpConfirmOrder
+    {
+        string nPath;
+        string nPOnumber;
+
+        public BgpConfirmOrder(string nPath, string nPOnumber)
+        {
+            this.nPath = nPath;
+            this.nPOnumber = nPOnumber;
+        }
+
+        public void processPO()
+        {
+            try
+            {
+                POWrapper po = (new GetDataFromPO(nPath)).findPOData();
+                po.vPONumber = nPOnumber;
+                SSEMainDBConnector connector = new SSEMainDBConnector();
+                foreach (PORow iterator in po.servicesInfo)
+                {
+                    int separator_index = iterator.description.IndexOf("/");
+                    if (separator_index <= 0 || separator_index >= iterator.description.Length) throw new Exception("Separador Especifico não encontrado.");
+                    string id = iterator.description.Substring(0, separator_index);
+                    string service_number = iterator.description.Substring(separator_index + 1);
+                    List<SSEDBWrapper> sse_vector = connector.findSSE("id", id);
+                    if (sse_vector.Count <= 0) { throw new Exception("SSE de Número: " + id + "não encontrada no Banco de Dados, por favor revise o template de entrada."); }
+                    SSEDBWrapper sse = sse_vector.ElementAt(0);
+                    sse.numero_da_PO = po.vPONumber;
+                    sse.iss = iterator.iSSAliq.ToString();
+                    sse.valor_do_orcamento_retorno = (float)iterator.unitValueSAP;
+                    sse.numero_do_orcamento = service_number;
+                    sse.data_recebimento = System.DateTime.Now;
+                    connector.updateSSE(int.Parse(id), sse);
+                }
+                MessageBox.Show("PO inserida");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        } 
+    }
+
     public partial class confirmOrder : Window
     {
         String path = null;
         String ordem = null;
-        LoadTool lt;
-        public Boolean ltst = false;
         public confirmOrder()
         {
             InitializeComponent();
@@ -51,57 +94,37 @@ namespace SSEDigitalV3.ConsultSSE
         private void insertPOButton_onClick(object sender, RoutedEventArgs e)
         {
             insertPO();
-            //startLoading();
         }
 
-        private async void startLoading() {
-            
-                this.lt = new LoadTool(this);
-                this.lt.Show();
-            
-        }
+        
 
         private void helpButton_onClick(object sender, RoutedEventArgs e)
         {
             System.Diagnostics.Process.Start(Environment.CurrentDirectory + "\\documentation\\help\\insertPOhelp.pdf");
         }
 
-        public async Task insertPO()
+        public void insertPO()
         {
-            string nPath= this.path;
-            string nPOnumber = this.ordemTextBox.Text;
-            bool nlt = this.ltst;
-
-            await Task.Run(() =>
+            BgpConfirmOrder bgpConfirmOrder = new BgpConfirmOrder(path, ordem);
+            BgpLoadToolDelegate bgpLoadToolDelegate = new BgpLoadToolDelegate();
+            Thread tbgpConfimOrder = new Thread(new ThreadStart(bgpConfirmOrder.processPO));
+            Thread tbgpLoadToolDelegate = new Thread(new ThreadStart(BgpLoadToolDelegate.showTool));
+            tbgpLoadToolDelegate.SetApartmentState(ApartmentState.STA);
+            tbgpConfimOrder.SetApartmentState(ApartmentState.STA);
+            tbgpConfimOrder.Start();
+            tbgpLoadToolDelegate.Start();
+            tbgpConfimOrder.Join();
+            
+            try
             {
-                try
-                {
-                    POWrapper po = (new GetDataFromPO(nPath)).findPOData();
-                    po.vPONumber = nPOnumber;
-                    SSEMainDBConnector connector = new SSEMainDBConnector();
-                    foreach (PORow iterator in po.servicesInfo)
-                    {
-                        int separator_index = iterator.description.IndexOf("/");
-                        if (separator_index <= 0 || separator_index >= iterator.description.Length) throw new Exception("Separador Especifico não encontrado.");
-                        string id = iterator.description.Substring(0, separator_index);
-                        string service_number = iterator.description.Substring(separator_index + 1);
-                        List<SSEDBWrapper> sse_vector = connector.findSSE("id", id);
-                        if (sse_vector.Count <= 0) { throw new Exception("SSE de Número: " + id + "não encontrada no Banco de Dados, por favor revise o template de entrada."); }
-                        SSEDBWrapper sse = sse_vector.ElementAt(0);
-                        sse.numero_da_PO = po.vPONumber;
-                        sse.iss = iterator.iSSAliq.ToString();
-                        sse.valor_do_orcamento_retorno = (float)iterator.unitValueSAP;
-                        sse.numero_do_orcamento = service_number;
-                        connector.updateSSE(int.Parse(id), sse);
-                    }
-                    MessageBox.Show("PO inserida");
-
+                if (tbgpLoadToolDelegate.IsAlive) 
+                {    
+                    tbgpLoadToolDelegate.Abort();
                 }
-                catch (Exception ex)
-                {
-                    MessageBox.Show(ex.Message);
-                }
-            });
+            } catch(Exception e)
+            {
+                Console.WriteLine(e.StackTrace);
+            }
         }
 
     }
