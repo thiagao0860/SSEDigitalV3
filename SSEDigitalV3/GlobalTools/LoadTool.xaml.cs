@@ -32,5 +32,9 @@ namespace SSEDigitalV3.GlobalTools
             InitializeComponent();
         }
 
+        private void onDeactivated(object sender, EventArgs e)
+        {
+            this.Close();
+        }
     }
 }

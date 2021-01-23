@@ -6,5 +6,5 @@
         xmlns:local="clr-namespace:SSEDigitalV3.NewSSEInterface"
         mc:Ignorable="d"
         Title="SSEInsertResponse" Height="450" Width="789.2">
-    <Frame x:Name="inserted_host" NavigationUIVisibility="Hidden" Loaded="hasShowed"/>
+    <Frame x:Name="inserted_host" NavigationUIVisibility="Hidden"/>
 </Window>

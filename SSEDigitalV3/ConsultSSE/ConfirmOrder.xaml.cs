@@ -114,7 +114,7 @@ namespace SSEDigitalV3.ConsultSSE
             tbgpConfimOrder.Start();
             tbgpLoadToolDelegate.Start();
             tbgpConfimOrder.Join();
-            
+            /*
             try
             {
                 if (tbgpLoadToolDelegate.IsAlive) 
@@ -125,6 +125,7 @@ namespace SSEDigitalV3.ConsultSSE
             {
                 Console.WriteLine(e.StackTrace);
             }
+            */
         }
 
     }

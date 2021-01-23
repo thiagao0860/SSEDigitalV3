@@ -20,56 +20,77 @@ namespace SSEDigitalV3.NewSSEInterface
     /// <summary>
     /// Lógica interna para SSEInsertResponse.xaml
     /// </summary>
-    public partial class SSEInsertResponse : Window
+    /// 
+    public class BgpSSEInsertResponse
     {
         public static int INSERT_SSE = 1;
         public static int UPDATE_SSE = 2;
         private int target;
-        LoadingPage lp;
-        SSEDBWrapper sse;
-        Window sseWindow;
-        public SSEInsertResponse(SSEDBWrapper sse, Window sseWin , int target)
+        private SSEDBWrapper sse;
+        private SSEInsertResponse parent;
+        
+        public BgpSSEInsertResponse(SSEDBWrapper sse, int target,SSEInsertResponse parent)
         {
-            InitializeComponent();
-            this.lp = new LoadingPage();
-            this.inserted_host.Navigate(lp);
             this.sse = sse;
-            sseWindow = sseWin;
             this.target = target;
+            this.parent = parent;
         }
 
-        private void hasShowed(object sender, RoutedEventArgs e)
+        public void insertToDataBase()
         {
-            lp.startLoading();
             SSEMainDBConnector conector = new SSEMainDBConnector();
             Console.WriteLine("Date operation started");
-            int status=0;
+            int status = 0;
             if (target == INSERT_SSE)
             {
                 status = conector.insertSSE(sse);
-                lp.stopLoading();
                 if (status > 0)
                 {
                     sse.id = status;
-                    this.inserted_host.Navigate(new SSEinserted(sse, this, sseWindow));
                 }
             }
             else if (target == UPDATE_SSE)
             {
                 if (sse.id > 0)
                 {
-                    if (conector.updateSSE((int)sse.id, sse)) status = 1;
-                    lp.stopLoading();
-                    if (status > 0)
-                    {
-                        this.inserted_host.Navigate(new SSEupdated(sse, this, sseWindow));
-                    }
+                    if (conector.updateSSE((int)(sse.id), sse)) status = 1;
+                    
                 }
                 else
                 {
-                    throw new Exception("process try to update a SSE but it does not exist");
+                    MessageBox.Show("SSE inexistente");
                 }
             }
+            this.parent.Dispatcher.Invoke(() =>
+            {
+                this.parent.inserted_host.Navigate(new SSEupdated(sse,parent,parent.sseWindow));
+            });
         }
+    }
+
+    public partial class SSEInsertResponse : Window
+    {
+        private static int INSERT_SSE = 1;
+        private static int UPDATE_SSE = 2;
+        private int target;
+        private LoadingPage lp;
+        private SSEDBWrapper sse;
+        public Window sseWindow;
+        public SSEInsertResponse(SSEDBWrapper sse, Window sseWin , int target)
+        {
+            InitializeComponent();
+            
+            this.sse = sse;
+            sseWindow = sseWin;
+            this.target = target;
+
+            BgpSSEInsertResponse bgpInsertResponse = new BgpSSEInsertResponse(sse, target, this);
+            Thread tbgpInsertToDatabaseDelegate = new Thread(new ThreadStart(bgpInsertResponse.insertToDataBase));
+            tbgpInsertToDatabaseDelegate.SetApartmentState(ApartmentState.STA);
+            tbgpInsertToDatabaseDelegate.Start();
+            this.inserted_host.Navigate(new LoadingPage());
+        }
+
+        
     }
 }

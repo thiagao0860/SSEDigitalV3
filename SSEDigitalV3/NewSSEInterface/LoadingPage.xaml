@@ -11,7 +11,7 @@
 
     <Grid Height="200" Width="400">
 
-        <ProgressBar x:Name="ProgressBarLoading" HorizontalAlignment="Center" Height="7" Width="303" VerticalAlignment="Center" Grid.Column="0" Margin="72,131,25,62" Foreground="#FF050034" Background="Gold" BorderBrush="{x:Null}"/>
+        <ProgressBar x:Name="ProgressBarLoading" HorizontalAlignment="Center" Height="7" Width="303" VerticalAlignment="Center" Grid.Column="0" Margin="72,131,25,62" Foreground="#FF050034" Background="Gold" BorderBrush="{x:Null}" IsIndeterminate="True"/>
         <materialDesign:PackIcon Height="116" Width="117" HorizontalAlignment="Center" VerticalAlignment="Center" Kind="Database" Foreground="#FF050034" Margin="10,40,273,44" />
         <Label Content="Acessando o Banco de Dados" HorizontalAlignment="Left" Margin="132,100,0,0" VerticalAlignment="Top" Width="193" Foreground="#FF050034"/>
 
