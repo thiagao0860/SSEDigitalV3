@@ -6,14 +6,14 @@
         xmlns:local="clr-namespace:SSEDigitalV3.AccountFeatures"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         mc:Ignorable="d"
-        Title="LoginForm" Height="476.659" Width="296.682" Icon="iconeSC.ico" ResizeMode="NoResize">
+        Title="LoginForm" Height="476.659" Width="296.682" Icon="../Assets/Image/iconeSC.ico" ResizeMode="NoResize">
     <Grid Background="#FFE7E7E7">
         <Grid.RowDefinitions>
             <RowDefinition Height="124*"/>
             <RowDefinition Height="75*"/>
             <RowDefinition Height="25*"/>
         </Grid.RowDefinitions>
-        <Image Margin="50" Width="auto" Grid.Row="0" Source="ICONE chefe SOUZA CRUZ.png"/>
+        <Image Margin="50" Width="auto" Grid.Row="0" Source="../assets/image/ICONE chefe SOUZA CRUZ.png"/>
         <Grid Margin="20" Grid.Row="1" Background="White">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="1*"/>

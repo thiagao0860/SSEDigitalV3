@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -79,6 +80,11 @@ namespace SSEDigitalV3.GlobalTools
                 && (!(input.Quantidade >= 0)))
             {
                 throw new InputError("Valor de \"Quantidade\" Inconsistente.", controler.numericUpDownQuantidade);
+            }
+            Match m = Regex.Match(input.Requisicao,@"\d{10}/\d{2}");
+            if(!input.Requisitante.CelulaString.Equals("EP") && !m.Success)
+            {
+                throw new InputError("Valor de \"Requisição de Compras\" Inconsistente.", controler.maskedTextBoxRequisicaoCompras);
             }
             return input;
         }

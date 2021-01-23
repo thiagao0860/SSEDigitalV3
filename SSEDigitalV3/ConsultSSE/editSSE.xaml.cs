@@ -16,6 +16,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using Xceed.Wpf.Toolkit;
 
 namespace SSEDigitalV3.ConsultSSE
 {
@@ -33,6 +34,7 @@ namespace SSEDigitalV3.ConsultSSE
         ComboBox SSEVisualInterface.comboBoxTipo { get => this.comboBoxTipo; }
         ComboBox SSEVisualInterface.comboBoxCelula { get => this.comboBoxCelula; }
         TextBox SSEVisualInterface.textBoxOrdem { get => this.textBoxOrdem; }
+        MaskedTextBox SSEVisualInterface.maskedTextBoxRequisicaoCompras { get => this.maskedTextBoxRequisicaoCompras; }
         TextBox SSEVisualInterface.textBoxRamal { get => this.textBoxRamal; }
         TextBox SSEVisualInterface.textBoxValor { get => this.textBoxValor; }
         TextBox SSEVisualInterface.textBoxValorOrc { get => this.textBoxValorOrc; }
@@ -91,7 +93,7 @@ namespace SSEDigitalV3.ConsultSSE
             this.textBoxEquipamento.IsEnabled = true;
             this.datePickerPrazo.IsEnabled = true;
             this.richTextBoxDescricao.IsEnabled = true;
-            this.textBoxRequisicaoCompras.IsEnabled = true;
+            this.maskedTextBoxRequisicaoCompras.IsEnabled = true;
 
             this.textBoxValor.IsEnabled = true;
             this.textBoxValorOrc.IsEnabled = true;
@@ -128,7 +130,7 @@ namespace SSEDigitalV3.ConsultSSE
             this.textBoxEquipamento.IsEnabled = false;
             this.datePickerPrazo.IsEnabled = false;
             this.richTextBoxDescricao.IsEnabled = false;
-            this.textBoxRequisicaoCompras.IsEnabled = false;
+            this.maskedTextBoxRequisicaoCompras.IsEnabled = false;
 
             this.textBoxValor.IsEnabled = false;
             this.textBoxValorOrc.IsEnabled = false;
@@ -166,7 +168,7 @@ namespace SSEDigitalV3.ConsultSSE
             this.comboBoxTipo.SelectedIndex = this.sse.ISSEBean.Tipo-1;
             this.comboBoxProvider.SelectedIndex = this.sse.ISSEBean.Fornecedor-1;
             this.textBoxOrdem.Text = this.sse.ISSEBean.Ordem;
-            this.textBoxRequisicaoCompras.Text = this.sse.ISSEBean.Requisicao;
+            this.maskedTextBoxRequisicaoCompras.Text = this.sse.ISSEBean.Requisicao;
             this.textBoxCodigo.Text = this.sse.ISSEBean.Codigo;
             this.textBoxReferencia.Text = this.sse.ISSEBean.Referencia;
             this.textBoxNota.Text = this.sse.ISSEBean.Nota;
@@ -243,7 +245,7 @@ namespace SSEDigitalV3.ConsultSSE
                 {
                     ex.target.Background = Brushes.Red;
                 }
-                MessageBox.Show(ex.appMessage, "Input Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                System.Windows.MessageBox.Show(ex.appMessage, "Input Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
 
@@ -312,7 +314,7 @@ namespace SSEDigitalV3.ConsultSSE
             }
             #endregion
 
-            returnStatement.Requisicao = this.textBoxRequisicaoCompras.Text;
+            returnStatement.Requisicao = this.maskedTextBoxRequisicaoCompras.Text;
             if ((bool)this.radioButton1.IsChecked) returnStatement.Prioridade = 1;
             else if ((bool)this.radioButton2.IsChecked) returnStatement.Prioridade = 2;
             else if ((bool)this.radioButton3.IsChecked) returnStatement.Prioridade = 3;

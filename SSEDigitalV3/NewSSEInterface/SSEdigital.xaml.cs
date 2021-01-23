@@ -16,6 +16,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using Xceed.Wpf.Toolkit;
 
 namespace SSEDigitalV3.NewSSEInterface
 {
@@ -33,7 +34,8 @@ namespace SSEDigitalV3.NewSSEInterface
         ComboBox SSEVisualInterface.comboBoxProvider { get => this.comboBoxProvider; }
         ComboBox SSEVisualInterface.comboBoxTipo { get => this.comboBoxTipo;}
         ComboBox SSEVisualInterface.comboBoxCelula { get => this.comboBoxCelula;}
-        TextBox SSEVisualInterface.textBoxOrdem { get => this.textBoxOrdem;}
+        TextBox SSEVisualInterface.textBoxOrdem { get => this.textBoxOrdem; }
+        MaskedTextBox SSEVisualInterface.maskedTextBoxRequisicaoCompras { get => this.maskedTextBoxRequisicaoCompras; }
         TextBox SSEVisualInterface.textBoxRamal { get => this.textBoxRamal;}
         TextBox SSEVisualInterface.textBoxValor { get => this.textBoxValor;}
         TextBox SSEVisualInterface.textBoxValorOrc { get => this.textBoxValorOrc;}
@@ -42,7 +44,7 @@ namespace SSEDigitalV3.NewSSEInterface
         TextBox SSEVisualInterface.textBoxCodigo { get => this.textBoxCodigo; }
         TextBox SSEVisualInterface.textBoxReferencia { get => this.textBoxReferencia; }
         DatePicker SSEVisualInterface.datePickerPrazo { get => this.datePickerPrazo;}
-        Xceed.Wpf.Toolkit.IntegerUpDown SSEVisualInterface.numericUpDownQuantidade { get => this.numericUpDownQuantidade;}
+        IntegerUpDown SSEVisualInterface.numericUpDownQuantidade { get => this.numericUpDownQuantidade;}
         #endregion
 
         public SSEdigital()
@@ -189,7 +191,7 @@ namespace SSEDigitalV3.NewSSEInterface
             }
             #endregion
 
-            returnStatement.Requisicao = this.textBoxRequisicaoCompras.Text;
+             returnStatement.Requisicao = this.maskedTextBoxRequisicaoCompras.Text;
              if ((bool)this.radioButton1.IsChecked) returnStatement.Prioridade = 1;
              else if ((bool)this.radioButton2.IsChecked) returnStatement.Prioridade = 2;
              else if ((bool)this.radioButton3.IsChecked) returnStatement.Prioridade = 3;
@@ -216,7 +218,7 @@ namespace SSEDigitalV3.NewSSEInterface
                 {
                     ex.target.Background = Brushes.Red;
                 }
-                MessageBox.Show(ex.appMessage,"Input Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                System.Windows.MessageBox.Show(ex.appMessage,"Input Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
 

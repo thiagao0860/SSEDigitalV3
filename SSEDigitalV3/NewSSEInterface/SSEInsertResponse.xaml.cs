@@ -70,19 +70,14 @@ namespace SSEDigitalV3.NewSSEInterface
 
     public partial class SSEInsertResponse : Window
     {
-        private static int INSERT_SSE = 1;
-        private static int UPDATE_SSE = 2;
-        private int target;
-        private LoadingPage lp;
-        private SSEDBWrapper sse;
+        public static int INSERT_SSE = 1;
+        public static int UPDATE_SSE = 2;
         public Window sseWindow;
         public SSEInsertResponse(SSEDBWrapper sse, Window sseWin , int target)
         {
             InitializeComponent();
             
-            this.sse = sse;
             sseWindow = sseWin;
-            this.target = target;
 
             BgpSSEInsertResponse bgpInsertResponse = new BgpSSEInsertResponse(sse, target, this);
             Thread tbgpInsertToDatabaseDelegate = new Thread(new ThreadStart(bgpInsertResponse.insertToDataBase));

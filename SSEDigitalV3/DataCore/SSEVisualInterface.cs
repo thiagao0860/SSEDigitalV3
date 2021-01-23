@@ -14,6 +14,7 @@ namespace SSEDigitalV3.DataCore
         ComboBox comboBoxTipo { get;  }
         ComboBox comboBoxCelula { get;}
         TextBox textBoxOrdem { get;  }
+        MaskedTextBox maskedTextBoxRequisicaoCompras { get; }
         TextBox textBoxRamal { get;  }
         TextBox textBoxValor { get;  }
         TextBox textBoxValorOrc { get; }

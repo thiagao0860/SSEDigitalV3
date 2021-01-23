@@ -113,3 +113,4 @@ C:\Users\Thiago\source\repos\SSEDigitalV3\SSEDigitalV3\obj\Release\ConsultSSE\Co
 C:\Users\Thiago\source\repos\SSEDigitalV3\SSEDigitalV3\obj\Release\ConsultSSE\ConfirmOrder.baml
 C:\Users\Thiago\source\repos\SSEDigitalV3\SSEDigitalV3\obj\Release\GlobalTools\LoadTool.g.cs
 C:\Users\Thiago\source\repos\SSEDigitalV3\SSEDigitalV3\obj\Release\GlobalTools\LoadTool.baml
+C:\Users\Thiago\source\repos\SSEDigitalV3\SSEDigitalV3\bin\Release\ja-JP\Xceed.Wpf.AvalonDock.resources.dll

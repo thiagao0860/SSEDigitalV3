@@ -9,10 +9,9 @@ namespace SSEDigitalV3.GlobalTools
 {
     class BgpLoadToolDelegate
     {
-        public LoadTool lt;
         public static void showTool()
         {
-            lt = new LoadTool();
+            LoadTool lt = new LoadTool();
             try
             {
                 lt.ShowDialog();
