@@ -11,6 +11,7 @@ namespace SSEDigitalV3
         public Color acent_color;
         public User loged_User;
         public int version_enabled;
+        public int encryptionEnable;
         public string restApiURI;
         public CultureInfo culture;
         private static MainConstants ourInstance = new MainConstants();
@@ -21,18 +22,23 @@ namespace SSEDigitalV3
             this.loged_User = null;
             this.acent_color = Color.FromArgb(255, 153, 153);
             this.version_enabled = 1;
+            this.encryptionEnable = 0;
             this.culture = new CultureInfo("pt-BR");
             SQLiteUserConnector db = new SQLiteUserConnector();
-            int returned = db.GetIntValue("version");
-            Console.WriteLine(returned);
-            if (returned > 0)
+            int returnedV = db.GetIntValue("version");
+            if (returnedV > 0)
             {
-                this.version_enabled = returned;
+                this.version_enabled = returnedV;
             }
             string restApiURIreturned = db.GetStringValue("restApiUri");
             if (restApiURIreturned != null)
             {
                 this.restApiURI = restApiURIreturned;
+            }
+            int returnEncryptionEnable = db.GetIntValue("encryptionEnable");
+            if (returnEncryptionEnable > 0)
+            {
+                this.encryptionEnable = returnEncryptionEnable;
             }
         }
     }

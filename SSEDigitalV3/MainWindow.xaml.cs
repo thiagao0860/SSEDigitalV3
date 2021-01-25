@@ -3,6 +3,7 @@ using SSEDigitalV3.ConsultSSE;
 using SSEDigitalV3.DataCore;
 using SSEDigitalV3.GlobalTools;
 using SSEDigitalV3.NewSSEInterface;
+using SSEDigitalV3.RSAEncryptModule;
 using SSEDigitalV3.UserDBConnector;
 using System;
 using System.Collections.Generic;
@@ -169,21 +170,64 @@ namespace SSEDigitalV3
             {
                 this.InsertPOButton.Visibility = Visibility.Visible;
             }
+            if (foundUser.Matricula.Equals("00000000"))
+            {
+                this.EncryptDataButton.Visibility = Visibility.Visible;
+            }
         } 
 
         //My personalized close icon
         private void PackIcon_PreviewMouseDown(object sender, MouseButtonEventArgs e)
         {
-            var win = Application.Current.Windows;
-            foreach(Window iterator in win)
-            {
-                iterator.Close();
-            }
+            this.closeAll();
         }
 
         private void insertPOClick(object sender, MouseButtonEventArgs e)
         {
             (new confirmOrder()).ShowDialog();
+        }
+
+        
+
+        private void enableDisableEncryption(object sender, MouseButtonEventArgs e)
+        {
+            SQLiteUserConnector connector = new SQLiteUserConnector();
+            if (MainConstants.getInstance().encryptionEnable == 1)
+            {
+                connector.PutIntValue("encryptionEnable", 0);
+                MainConstants.getInstance().encryptionEnable = 0;
+                List<User> users = connector.GetUsers();
+                foreach (User iterator in users)
+                {
+                    String str = iterator.Setor;
+                    str = (new EncryptTool()).Decrypt(str);
+                    iterator.Setor = str;
+                    connector.UpdateUser(iterator);
+                }
+                MessageBox.Show("Main Data Decrypted.");
+                this.closeAll();
+            }else{
+                List<User> users = connector.GetUsers();
+                foreach (User iterator in users)
+                {
+                    String str = iterator.Setor;
+                    str = (new EncryptTool()).Encrypt(str);
+                    iterator.Setor = str;
+                    connector.UpdateUser(iterator);
+                }
+                connector.PutIntValue("encryptionEnable", 1);
+                MessageBox.Show("Main Data Encrypted.");
+                this.closeAll();
+            }
+        }
+
+        private void closeAll()
+        {
+            var win = Application.Current.Windows;
+            foreach (Window iterator in win)
+            {
+                iterator.Close();
+            }
         }
     }
 }

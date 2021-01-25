@@ -1,6 +1,8 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Data.SQLite;
 using SSEDigitalV3.DataCore;
+using SSEDigitalV3.RSAEncryptModule;
 
 namespace SSEDigitalV3.UserDBConnector
 {
@@ -159,6 +161,34 @@ namespace SSEDigitalV3.UserDBConnector
             }
         }
 
+        public void PutIntValue(string key, int value)
+        {
+            InitConnection();
+            try
+            {
+                SQLiteCommand sqlite_cmd;
+                sqlite_cmd = db_connection.CreateCommand();
+                sqlite_cmd.CommandText = "UPDATE CONSTANTS SET value = $value WHERE key = $key";
+
+                SQLiteParameter pkey = sqlite_cmd.CreateParameter();
+                pkey.ParameterName = "$key";
+                pkey.Value = key;
+                sqlite_cmd.Parameters.Add(pkey);
+
+                SQLiteParameter pvalue = sqlite_cmd.CreateParameter();
+                pvalue.ParameterName = "$value";
+                pvalue.Value = value;
+                sqlite_cmd.Parameters.Add(pvalue);
+
+
+                sqlite_cmd.ExecuteReader();
+            }
+            finally
+            {
+                FinishConnection();
+            }
+        }
+
         public string GetStringValue(string key)
         {
             InitConnection();
@@ -231,7 +261,7 @@ namespace SSEDigitalV3.UserDBConnector
 
                 SQLiteParameter setor = sqlite_cmd.CreateParameter();
                 setor.ParameterName = "$setor";
-                setor.Value = newUser.Setor;
+                setor.Value = setPreparedSetor(newUser.Setor);
                 sqlite_cmd.Parameters.Add(setor);
 
                 sqlite_cmd.ExecuteNonQuery();
@@ -267,7 +297,7 @@ namespace SSEDigitalV3.UserDBConnector
                     return_set.CelulaString = sqlite_datareader.GetString(celula_user_table_index);
                     return_set.Ramal = sqlite_datareader.GetString(ramal_user_table_index);
                     return_set.Email = sqlite_datareader.GetString(email_user_table_index);
-                    return_set.Setor = sqlite_datareader.GetString(setor_user_table_index);
+                    return_set.Setor = getPreparedSetor(sqlite_datareader.GetString(setor_user_table_index));
                     return_set.Superuser = sqlite_datareader.GetBoolean(superuser_user_table_index);
 
                     return return_set;
@@ -309,7 +339,7 @@ namespace SSEDigitalV3.UserDBConnector
                     return_set.CelulaString = sqlite_datareader.GetString(celula_user_table_index);
                     return_set.Ramal = sqlite_datareader.GetString(ramal_user_table_index);
                     return_set.Email = sqlite_datareader.GetString(email_user_table_index);
-                    return_set.Setor = sqlite_datareader.GetString(setor_user_table_index);
+                    return_set.Setor = getPreparedSetor(sqlite_datareader.GetString(setor_user_table_index));
                     return_set.Superuser = sqlite_datareader.GetBoolean(superuser_user_table_index);
                     return return_set;
                 }
@@ -485,6 +515,67 @@ namespace SSEDigitalV3.UserDBConnector
                 sqlite_cmd.Parameters.Add(mac);
 
                 sqlite_cmd.ExecuteNonQuery();
+            }
+            finally
+            {
+                FinishConnection();
+            }
+        }
+
+        public static String getPreparedSetor(String data)
+        {
+            if (MainConstants.getInstance().encryptionEnable == 1)
+            {
+                EncryptTool et = new EncryptTool();
+                return et.Decrypt(data);
+            }else
+            {
+                return data;
+            }
+        }
+
+        public static String setPreparedSetor(String data)
+        {
+            if (MainConstants.getInstance().encryptionEnable == 1)
+            {
+                EncryptTool et = new EncryptTool();
+                return et.Encrypt(data);
+            }
+            else
+            {
+                return data;
+            }
+        }
+
+        public List<User> GetUsers()
+        {
+            InitConnection();
+            try
+            {
+                SQLiteDataReader sqlite_datareader;
+                SQLiteCommand sqlite_cmd;
+                sqlite_cmd = db_connection.CreateCommand();
+                sqlite_cmd.CommandText = "SELECT * FROM USERS";
+                
+                sqlite_datareader = sqlite_cmd.ExecuteReader();
+                List<User> users = new List<User>();
+
+                while (sqlite_datareader.Read())
+                {
+                    User return_set = new User();
+                    return_set.Id = sqlite_datareader.GetInt32(id_user_table_index);
+                    return_set.Nome = sqlite_datareader.GetString(name_user_table_index);
+                    return_set.Matricula = sqlite_datareader.GetString(matricula_user_table_index);
+                    return_set.CelulaString = sqlite_datareader.GetString(celula_user_table_index);
+                    return_set.Ramal = sqlite_datareader.GetString(ramal_user_table_index);
+                    return_set.Email = sqlite_datareader.GetString(email_user_table_index);
+                    return_set.Setor = getPreparedSetor(sqlite_datareader.GetString(setor_user_table_index));
+                    return_set.Superuser = sqlite_datareader.GetBoolean(superuser_user_table_index);
+
+                    users.Add(return_set);
+                }
+
+                return users;
             }
             finally
             {

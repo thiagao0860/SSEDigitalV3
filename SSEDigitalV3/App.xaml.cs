@@ -3,12 +3,14 @@ using SSEDigitalV3.ExcelIntegration;
 using SSEDigitalV3.GlobalTools;
 using SSEDigitalV3.MainDBConnector;
 using SSEDigitalV3.NewSSEInterface;
+using SSEDigitalV3.RSAEncryptModule;
 using SSEDigitalV3.UserDBConnector;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
 using System.Linq;
+using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 
@@ -27,16 +29,7 @@ namespace SSEDigitalV3
         {
             
             connector = new SQLiteUserConnector();
-            /*
-            for (int i = 500; i < 600; i++)
-            {
-                SSEMainDBConnector mainDBConnector = new SSEMainDBConnector();
-                SSEDBWrapper sSEBean = GetSSEFromDeprecatedExcel.getInstance().findDBById(i.ToString());
-                mainDBConnector.insertSSE(sSEBean, sSEBean.id);
-                Console.WriteLine(sSEBean.id + " inserted");
-                //(new PrinterTools(sSEBean)).printSSE();
-            }
-            */
+
             if (MainConstants.getInstance().version_enabled == 1)
             {
                 (new SSEdigital()).ShowDialog();
