@@ -115,13 +115,15 @@ namespace SSEDigitalV3.ConsultSSE
         private void buttonPDFHandle(object sender, MouseButtonEventArgs e)
         {
             IList<DataGridCellInfo> selection= this.DataGridSSEs.SelectedCells;
-            SSEMainDBConnector connector = new SSEMainDBConnector();
+            SSEMainDBConnector mainDBConnector = new SSEMainDBConnector();
             if (selection.Count>0)
             {
                 for (int i=0;i<selection.Count;i=i+this.DataGridSSEs.Columns.Count)
                 {
                     int sse_id = ((DataInserter)selection.ElementAt(i).Item).id;
-                    SSEDBWrapper sse = connector.findSSE("id", sse_id.ToString()).ElementAt(0);
+                    SSEDBWrapper sse = mainDBConnector.findSSE("id", sse_id.ToString()).ElementAt(0);
+                    SQLiteUserConnector usersDBConnector = new SQLiteUserConnector();
+                    sse.ISSEBean.Requisitante = usersDBConnector.GetUserByMatricula(sse.ISSEBean.Requisitante.Matricula);
                     (new PrinterTools(sse)).printSSE();
                 }
             }
