@@ -37,14 +37,14 @@ namespace SSEDigitalV3.RSAEncryptModule
         {
             if (File.Exists(path))
             {
-                String gettedInfo = File.ReadAllText(path);
+                String gettedInfo = KeyProtector.GetDecryptString(path);
                 rsa.FromXmlString(gettedInfo);
             }
             else
             {
                 rsa = new RSACryptoServiceProvider();
                 String toSave = rsa.ToXmlString(true);
-                File.WriteAllText(path, toSave);
+                KeyProtector.SetEncryptString(path, toSave);
             }
         }
 

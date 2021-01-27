@@ -47,24 +47,31 @@ namespace SSEDigitalV3.NewSSEInterface
                 if (status > 0)
                 {
                     sse.id = status;
+                    this.parent.Dispatcher.Invoke(() =>
+                    {
+                        this.parent.inserted_host.Navigate(new SSEinserted(sse, parent, parent.sseWindow));
+                    });
                 }
             }
             else if (target == UPDATE_SSE)
             {
                 if (sse.id > 0)
                 {
-                    if (conector.updateSSE((int)(sse.id), sse)) status = 1;
-                    
+                    if (conector.updateSSE((int)(sse.id), sse))
+                    {
+                        status = 1;
+                        this.parent.Dispatcher.Invoke(() =>
+                        {
+                            this.parent.inserted_host.Navigate(new SSEupdated(sse, parent, parent.sseWindow));
+                        });
+                    }
                 }
                 else
                 {
                     MessageBox.Show("SSE inexistente");
                 }
             }
-            this.parent.Dispatcher.Invoke(() =>
-            {
-                this.parent.inserted_host.Navigate(new SSEupdated(sse,parent,parent.sseWindow));
-            });
+            
         }
     }
 

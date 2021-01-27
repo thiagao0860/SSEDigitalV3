@@ -253,6 +253,7 @@
       <DependentUpon>SSEInsertResponse.xaml</DependentUpon>
     </Compile>
     <Compile Include="RSAEncryptModule\EncryptTool.cs" />
+    <Compile Include="RSAEncryptModule\KeyProtector.cs" />
     <Compile Include="UsersDBConnector\SQLiteUserConnector.cs" />
     <Page Include="AccountFeatures\LoginForm.xaml">
       <SubType>Designer</SubType>
