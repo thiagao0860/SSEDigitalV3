@@ -23,15 +23,6 @@ namespace SSEDigitalV3.GlobalTools
             this.culture = MainConstants.getInstance().culture;
         }
 
-        public void restoreBackup()
-        {
-            String arq = File.ReadAllText(Environment.CurrentDirectory + "\\SystemLog(RESTORED).db");
-            byte[] byteArq = Encoding.Default.GetBytes(arq);
-            FileStream fs = new FileStream(Environment.CurrentDirectory + "\\SystemLog.db", FileMode.Create, FileAccess.Write);
-            BinaryWriter bn = new BinaryWriter(fs);
-            bn.Write(byteArq);
-        }
-
         public void createBackup()
         {
             RunAsync();
