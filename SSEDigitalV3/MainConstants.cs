@@ -13,6 +13,7 @@ namespace SSEDigitalV3
         public int version_enabled;
         public int encryptionEnable;
         public string restApiURI;
+        public DateTime lastBackup;
         public CultureInfo culture;
         private static MainConstants ourInstance = new MainConstants();
 
@@ -23,6 +24,7 @@ namespace SSEDigitalV3
             this.acent_color = Color.FromArgb(255, 153, 153);
             this.version_enabled = 1;
             this.encryptionEnable = 0;
+            this.lastBackup = new DateTime(2000,1,1);
             this.culture = new CultureInfo("pt-BR");
             SQLiteUserConnector db = new SQLiteUserConnector();
             int returnedV = db.GetIntValue("version");
@@ -39,6 +41,11 @@ namespace SSEDigitalV3
             if (returnEncryptionEnable > 0)
             {
                 this.encryptionEnable = returnEncryptionEnable;
+            }
+            DateTime returnLastBackup = DateTime.Parse(db.GetStringValue("lastBackup"),culture).Date;
+            if (returnLastBackup != null)
+            {
+                this.lastBackup = returnLastBackup;
             }
         }
     }

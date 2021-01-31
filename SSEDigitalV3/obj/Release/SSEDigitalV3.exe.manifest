@@ -235,14 +235,14 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="SSEDigitalV3.exe" size="2953704">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="SSEDigitalV3.exe" size="2956776">
       <assemblyIdentity name="SSEDigitalV3" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>KKJA3qV41JL1MOxEPa21HBVIR7dBSOeSvDX/TazXdgw=</dsig:DigestValue>
+        <dsig:DigestValue>3tz8fpNjTg7QGj34fOf9QoRzKyHejKhKH2POmeYZIrA=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
@@ -567,13 +567,13 @@
       <dsig:DigestValue>zuj59FZ6VwFhrP8Shf6NIh3z2Q3JSUnZOF82TI0Z5oI=</dsig:DigestValue>
     </hash>
   </file>
-  <file name="SSEDigitalV3.exe.config" size="189">
+  <file name="SSEDigitalV3.exe.config" size="436">
     <hash>
       <dsig:Transforms>
         <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
       </dsig:Transforms>
       <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-      <dsig:DigestValue>R+Wg8QGvQVHX8T0ta/qbhH1bXkqY0fRnS3wBV3J0bN8=</dsig:DigestValue>
+      <dsig:DigestValue>5D5eLK3FzaUzZsNRq7JB4LRaa2Kc6IPhMZo/jWvbkHY=</dsig:DigestValue>
     </hash>
   </file>
   <compatibility xmlns="urn:schemas-microsoft-com:compatibility.v1">

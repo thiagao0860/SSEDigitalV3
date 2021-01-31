@@ -1,0 +1,33 @@
+GET https://drives;
+
+###
+
+
+POST /drives/{driveId}/items/{itemId}/createUploadSession
+{
+  "@microsoft.graph.conflictBehavior": "rename | fail | replace",
+  "description": "description",
+  "fileSystemInfo": { "@odata.type": "microsoft.graph.fileSystemInfo" },
+  "name": "filename.txt"
+}
+
+###
+
+GET https://graph.microsoft.com/v1.0/drive/me
+
+
+###
+
+POST https://graph.microsoft.com/v1.0/{version}/me/drive/items/01CYZLFJGUJ7JHBSZDFZFL25KSZGQTVAUN/workbook/createSession HTTP/1.1
+content-type: Application/Json 
+authorization: Bearer {access-token}
+
+###
+
+https://login.microsoftonline.com/organizations/oauth2/v2.0/authorize?
+&client_id=e92df00c-7544-4665-86e4-1a9fd257c669
+&response_type=code
+&redirect_uri=http%3A%2F%2Flocalhost%2Fmyapp%2F
+&response_mode=query
+&scope=offline_access%20user.read%20mail.read
+&state=12345

@@ -220,6 +220,34 @@ namespace SSEDigitalV3.UserDBConnector
             }
         }
 
+        public void PutStringValue(string key, string value)
+        {
+            InitConnection();
+            try
+            {
+                SQLiteCommand sqlite_cmd;
+                sqlite_cmd = db_connection.CreateCommand();
+                sqlite_cmd.CommandText = "UPDATE CONSTANTS SET value = $value WHERE key = $key";
+
+                SQLiteParameter pkey = sqlite_cmd.CreateParameter();
+                pkey.ParameterName = "$key";
+                pkey.Value = key;
+                sqlite_cmd.Parameters.Add(pkey);
+
+                SQLiteParameter pvalue = sqlite_cmd.CreateParameter();
+                pvalue.ParameterName = "$value";
+                pvalue.Value = value;
+                sqlite_cmd.Parameters.Add(pvalue);
+
+
+                sqlite_cmd.ExecuteReader();
+            }
+            finally
+            {
+                FinishConnection();
+            }
+        }
+
         public void InsertUser(User newUser)
         {
             if (GetUserByMatricula(newUser.Matricula) != null)

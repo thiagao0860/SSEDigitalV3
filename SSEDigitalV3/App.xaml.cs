@@ -29,6 +29,11 @@ namespace SSEDigitalV3
         {
             
             connector = new SQLiteUserConnector();
+            if (!MainConstants.getInstance().lastBackup.Date.Equals(System.DateTime.Now.Date)) {
+                Console.WriteLine("chegou");
+                (new BackupGenerator()).createBackup();
+            }
+
 
             if (MainConstants.getInstance().version_enabled == 1)
             {

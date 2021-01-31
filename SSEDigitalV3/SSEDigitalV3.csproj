@@ -204,6 +204,7 @@
     <Compile Include="ConsultSSE\mySSEs.xaml.cs">
       <DependentUpon>mySSEs.xaml</DependentUpon>
     </Compile>
+    <Compile Include="DataCore\BackupBean.cs" />
     <Compile Include="DataCore\POWrapper.cs" />
     <Compile Include="DataCore\SetorDBWrapper.cs" />
     <Compile Include="DataCore\Intent.cs" />
@@ -222,6 +223,7 @@
     <Compile Include="ExcelIntegration\GetSSEFromDeprecatedExcel.cs" />
     <Compile Include="GlobalTools\BackgroundEventHandler.cs" />
     <Compile Include="GlobalTools\BgpLoadToolDelegate.cs" />
+    <Compile Include="GlobalTools\BackupGenerator.cs" />
     <Compile Include="GlobalTools\InputError.cs" />
     <Compile Include="GlobalTools\LoadTool.xaml.cs">
       <DependentUpon>LoadTool.xaml</DependentUpon>
