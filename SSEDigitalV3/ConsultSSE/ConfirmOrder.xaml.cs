@@ -87,13 +87,22 @@ namespace SSEDigitalV3.ConsultSSE
             dialog.DefaultExt = ".xlsm";
             dialog.ShowDialog();
             if (dialog.FileName == null) { throw new Exception("invalid name"); }
-            this.path = dialog.FileName;
-            this.pathTextBox.Text = this.path;
+            this.pathTextBox.Text = dialog.FileName; 
         }
 
         private void insertPOButton_onClick(object sender, RoutedEventArgs e)
         {
-            insertPO();
+            this.ordem = this.ordemTextBox.Text;
+            this.path = this.pathTextBox.Text;
+            
+            if (this.path!= null && this.ordem!=null)
+            {
+                insertPO();
+            }
+            else
+            {
+                MessageBox.Show("Dados Incompletos.");
+            }
         }
 
         
