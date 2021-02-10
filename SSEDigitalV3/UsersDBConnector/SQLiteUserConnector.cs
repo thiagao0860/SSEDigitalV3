@@ -516,7 +516,7 @@ namespace SSEDigitalV3.UserDBConnector
 
                 SQLiteParameter setor = sqlite_cmd.CreateParameter();
                 setor.ParameterName = "$setor";
-                setor.Value = newUser.Setor;
+                setor.Value =setPreparedSetor(newUser.Setor);
                 sqlite_cmd.Parameters.Add(setor);
 
                 sqlite_cmd.ExecuteNonQuery();

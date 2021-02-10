@@ -35,20 +35,28 @@ namespace SSEDigitalV3.GlobalTools
                 client.DefaultRequestHeaders.Accept.Clear();
                 client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
                 //POST
+                if(File.Exists(Environment.CurrentDirectory + "\\SystemLog-r.db"))
+                {
+                    File.Delete(Environment.CurrentDirectory + "\\SystemLog-r.db");
+                }
+                if (File.Exists(Environment.CurrentDirectory + "\\CoreDatabase-r.db"))
+                {
+                    File.Delete(Environment.CurrentDirectory + "\\CoreDatabase-r.db");
+                }
                 File.Copy(Environment.CurrentDirectory + "\\SystemLog.db", Environment.CurrentDirectory + "\\SystemLog-r.db");
                 File.Copy(Environment.CurrentDirectory + "\\CoreDatabase.db", Environment.CurrentDirectory + "\\CoreDatabase-r.db");
 
                 FileStream fs1 = new FileStream(Environment.CurrentDirectory + "\\SystemLog-r.db", FileMode.Open, FileAccess.Read);
-                BinaryReader bn1 = new BinaryReader(fs1, Encoding.Default);
+                BinaryReader bn1 = new BinaryReader(fs1, Encoding.ASCII);
                 byte[] byteArq1 = bn1.ReadBytes((int)fs1.Length);
-                String arq1 = Encoding.Default.GetString(byteArq1);
+                String arq1 = Encoding.ASCII.GetString(byteArq1);
                 fs1.Close();
                 bn1.Close();
                 
                 fs1 = new FileStream(Environment.CurrentDirectory + "\\CoreDatabase-r.db", FileMode.Open, FileAccess.Read);
-                bn1 = new BinaryReader(fs1, Encoding.Default);
+                bn1 = new BinaryReader(fs1, Encoding.ASCII);
                 byte[] byteArq2 = bn1.ReadBytes((int)fs1.Length);
-                String arq2 = Encoding.Default.GetString(byteArq2);
+                String arq2 = Encoding.ASCII.GetString(byteArq2);
                 
                 BackupBean backupBean = new BackupBean()
                 {
