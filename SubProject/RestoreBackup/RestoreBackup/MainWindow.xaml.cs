@@ -68,18 +68,18 @@ namespace RestoreBackup
 
         public void restoreBackup()
         {
-            String arq1 = File.ReadAllText(this.pathSystemLogTextBox.Text);
+            String arq1 = File.ReadAllText(this.pathSystemLogTextBox.Text,Encoding.UTF8);
             byte[] byteArq1 = Encoding.ASCII.GetBytes(arq1);
             FileStream fs = new FileStream(Environment.CurrentDirectory + "\\SystemLog.db", FileMode.Create, FileAccess.Write);
-            BinaryWriter bn = new BinaryWriter(fs);
+            BinaryWriter bn = new BinaryWriter(fs, Encoding.ASCII);
             bn.Write(byteArq1);
             fs.Close();
             bn.Close();
 
-            String arq2 = File.ReadAllText(this.pathCoreDBTextBox.Text);
+            String arq2 = File.ReadAllText(this.pathCoreDBTextBox.Text, Encoding.UTF8);
             byte[] byteArq2 = Encoding.ASCII.GetBytes(arq2);
             fs = new FileStream(Environment.CurrentDirectory + "\\CoreDatabase.db", FileMode.Create, FileAccess.Write);
-            bn = new BinaryWriter(fs);
+            bn = new BinaryWriter(fs, Encoding.ASCII);
             bn.Write(byteArq2);
         }
 

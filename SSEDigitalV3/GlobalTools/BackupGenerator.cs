@@ -34,6 +34,7 @@ namespace SSEDigitalV3.GlobalTools
             {
                 client.DefaultRequestHeaders.Accept.Clear();
                 client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+                
                 //POST
                 if(File.Exists(Environment.CurrentDirectory + "\\SystemLog-r.db"))
                 {
